@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  match("/", { :controller => "posts", :action => "index", :via => "get"})
+  match("/", { :controller => "posts", :action => "community_index", :via => "get"})
 
   # Routes for the Headshot resource:
 
@@ -62,12 +62,12 @@ Rails.application.routes.draw do
   # Routes for the Post resource:
 
   # CREATE
+  match("/new_post", { :controller => "posts", :action => "upload", :via => "get"})
   match("/insert_post", { :controller => "posts", :action => "create", :via => "post"})
           
   # READ
-  match("/posts", { :controller => "posts", :action => "index", :via => "get"})
-  
-  match("/posts/:id_from_path", { :controller => "posts", :action => "show", :via => "get"})
+  match("/feed", { :controller => "posts", :action => "community_index", :via => "get"})
+  match("/feed/:user_id", { :controller => "posts", :action => "user_index", :via => "get"})
   
   # UPDATE
   

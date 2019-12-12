@@ -1,0 +1,74 @@
+<h1> Your Feed </h1>
+
+<h2> Upload a new post </h2>
+
+   <body> 
+    <form action="/new_post">
+      <button>Click Here</button>
+   </body>
+
+<table>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Outfit 1
+        </th>
+
+        <th>
+          # of Likes
+        </th>
+
+        <th>
+          Outfit 2
+        </th>
+
+        <th>
+          # of Likes
+        </th>
+
+        <th>
+          You should wear this outfit!
+        </th>
+
+      <tr>
+
+<% @posts.where({ :poster_id => @current_user.id }).each do |post| %>
+  
+  
+  <tr>
+    <td>
+      <img height=100 src="<%= post.outfit1_id %>">
+    </td>
+
+    <td>
+      <%= Like.where({ :post_id => post.id, :chosen_outfit => post.outfit1_id_identifier }).count %>
+    </td>
+
+    <td>
+      <img height=100 src="<%= post.outfit2_id %>">
+    </td>
+
+    <td>
+      <%= Like.where({ :post_id => post.id, :chosen_outfit => post.outfit2_id_identifier }).count %>
+    </td>
+
+    <td>
+      <% if Like.where({ :post_id => post.id, :chosen_outfit => post.outfit1_id_identifier }).count >
+        Like.where({ :post_id => post.id, :chosen_outfit => post.outfit2_id_identifier }).count %>
+      You should wear Outfit 1! 
+      <% elsif Like.where({ :post_id => post.id, :chosen_outfit => post.outfit2_id_identifier }).count > 
+      Like.where({ :post_id => post.id, :chosen_outfit => post.outfit1_id_identifier }).count %>
+      You should wear Outfit 2!
+      <% else %>
+      The Jury is still out!
+      <% end %>
+    </td>
+
+  </tr>
+
+<% end %>
+</table>

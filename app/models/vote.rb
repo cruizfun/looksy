@@ -7,7 +7,6 @@
 #  updated_at    :datetime         not null
 #  bestoutfit_id :integer
 #  post_id       :integer
-#  user_id       :integer
 #  voter_id      :integer
 #
 
