@@ -18,10 +18,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new
     @post.poster_id = session[:user_id]
-    @post.outfit1_id = params.fetch("outfit1_id_from_query")
-    @post.outfit2_id = params.fetch("outfit2_id_from_query")
+    @post.outfit1_id = params.fetch("outfit1_id_from_query","None Provided")
+    @post.outfit2_id = params.fetch("outfit2_id_from_query", "None Provided")
 
-    if @post.outfit1_id.to_s.empty? || @post.outfit2_id.to_s.empty?
+    if @post.outfit1_id == "None Provided" || @post.outfit2_id == "None Provided"
       redirect_to("/new_post", { :notice => "Please make sure to upload two outfits so the community can vote!" })
     else
       @post.save
