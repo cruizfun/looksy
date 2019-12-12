@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all.order({ :created_at => :desc })
 
-    render({ :template => "posts/index.html.erb" })
+    render({ :template => "posts/community_feed.html.erb" })
   end
 
   def show

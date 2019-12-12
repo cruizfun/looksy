@@ -8,6 +8,7 @@
 #  bestoutfit_id :integer
 #  post_id       :integer
 #  user_id       :integer
+#  voter_id      :integer
 #
 
 class Vote < ApplicationRecord

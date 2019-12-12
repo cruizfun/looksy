@@ -17,6 +17,8 @@ gem 'webpacker', '~> 4.0'
 gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt'
+# Add Uploader
+gem 'carrierwave', '~> 2.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

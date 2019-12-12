@@ -1,0 +1,142 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      Style Feed
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table" border="1">
+          <td>Rosey User
+          </td>
+          
+          <td>
+          Look 1
+          </td>
+
+          <td>
+            Your Vote
+          </td>
+
+          <td>
+            Rosey Community Vote
+          </td>
+
+          <td>
+            Look 2
+          </td>
+          
+          <td>
+          Your Vote
+          </td>
+
+          <td>
+            Rosey Community Vote
+          </td>
+
+          <td>
+            Created
+          </td>
+
+    <% @posts.each do |post| %>
+        <% vote1 = Vote.where({ :liker_id => @current_user.id, :chosen_outfit => post.outfit1_id_identifier }).first %>
+        <% vote2 = Vote.where({ :liker_id => @current_user.id, :chosen_outfit => post.outfit2_id_identifier }).first %>
+
+        <% like1_count = Like.where({ :chosen_outfit => post.outfit1_id_identifier }).all.count %>
+        <% like2_count = Like.where({ :chosen_outfit => post.outfit2_id_identifier }).all.count %>
+
+      <tr>
+        <td>
+          <%= @current_user.username %>
+        </td>
+        <td>
+          <img height=100 src="<%= post.outfit1_id %>" class="img-responsive">
+        </td>
+        <td>
+          <% if like1 == nil && like2 == nil %>
+            <form action="/insert_like" method="post">
+              <input type="hidden" value="<% @current_user.id %>" name="liker_id_from_query">
+              <input type="hidden" value="<% post.id %>" name="post_id_from_query">
+              <input type="hidden" value="<% post.outfit1_id_identifier %>" name="chosen_outfit_from_query">
+                <colspan="2" width="50" align="center">
+                  <a href="/feed">
+                    <span style="font-size: 30px; color: Indigo;">
+                    <i class="fas fa-grin-hearts"></i>
+                    </span>
+                  </a>
+            </form>
+        </td>
+
+        <td>
+          <% elsif like1 != nil %>
+          You upvoted this look!
+        </td>
+              
+        <% else %>
+          <td> 100 </td>
+        <% end %>
+
+        <% if like1_count > like2_count %>
+
+        <td>
+        Rosey loves this look!
+        </td>
+
+        <% else %>
+          <td></td>
+        <% end %>
+
+        <td>
+          <img height=100 src="<%= post.outfit2_id %>" class="img-responsive">
+        </td>
+ 
+        <td>
+        <% if like1 == nil && like2 ==nil %>
+          <form action="/insert_like" method="post">
+            <input type="hidden" value="<% @current_user.id %>" name="liker_id_from_query">
+            <input type="hidden" value="<% post.id %>" name="post_id_from_query">
+            <input type="hidden" value="<% post.outfit2_id_identifier %>" name="chosen_outfit_from_query">
+                <colspan="2" width="50" align="center">
+                  <a href="/feed">
+                    <span style="font-size: 30px; color: Indigo;">
+                    <i class="fas fa-grin-hearts"></i>
+                    </span>
+                  </a>
+          </form>
+        </td>
+
+        <td>
+        <% elsif like2 != nil %>
+          You upvoted this look!
+        </td>
+
+        <td>
+          <% else %>
+          <% end %>
+        </td>
+
+        <td>
+          <% if like2_count > like1_count %>
+            Rosey loves this look!
+        </td>
+
+        <td>
+          <% else %>
+          <% end %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(post.created_at) %> ago
+        </td>
+
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
