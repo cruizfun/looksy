@@ -1,0 +1,118 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      List of all votes
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new vote
+    </h2>
+
+    <form action="/insert_vote" method="post">
+      <div class="form-group">
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="user_id_from_query" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="post_id_box">
+          Post
+        </label>
+
+        <input type="text" id="post_id_box" name="post_id_from_query" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="bestoutfit_id_box">
+          Bestoutfit
+        </label>
+
+        <input type="text" id="bestoutfit_id_box" name="bestoutfit_id_from_query" class="form-control">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Create vote
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Post
+        </th>
+
+        <th>
+          Bestoutfit
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @votes.each do |vote| %>
+      <tr>
+        <td>
+          <%= vote.id %>
+        </td>
+
+        <td>
+          <%= vote.user_id %>
+        </td>
+
+        <td>
+          <%= vote.post_id %>
+        </td>
+
+        <td>
+          <%= vote.bestoutfit_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(vote.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(vote.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/votes/<%= vote.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

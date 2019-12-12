@@ -1,0 +1,87 @@
+<div >
+  <h5>
+    Edit User Account
+  </h5>
+
+  <% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+  <% end %>
+  <div>
+    <form action="/patch_user" method="post">
+              
+      <div>
+        <label for="email_box">Email</label>
+          
+        <input id="email_box" name="email_from_query" value="<%= @current_user.email %>">
+          
+      </div>
+                                    
+      <div>
+        <label for="username_box">Username</label>
+          
+        <input id="username_box" name="username_from_query" value="<%= @current_user.username %>">
+          
+      </div>
+                      
+      <div>
+        <label for="bra_size_box">Bra size</label>
+          
+        <input id="bra_size_box" name="bra_size_from_query" value="<%= @current_user.bra_size %>">
+          
+      </div>
+                      
+      <div>
+        <label for="top_size_box">Top size</label>
+          
+        <input id="top_size_box" name="top_size_from_query" value="<%= @current_user.top_size %>">
+          
+      </div>
+                      
+      <div>
+        <label for="dress_size_box">Dress size</label>
+          
+        <input id="dress_size_box" name="dress_size_from_query" value="<%= @current_user.dress_size %>">
+          
+      </div>
+                      
+      <div>
+        <label for="pant_size_box">Pant size</label>
+          
+        <input id="pant_size_box" name="pant_size_from_query" value="<%= @current_user.pant_size %>">
+          
+      </div>
+                      
+      <div>
+        <label for="headshot_id_box">Headshot</label>
+          
+        <input id="headshot_id_box" name="headshot_id_from_query" value="<%= @current_user.headshot_id %>">
+          
+      </div>
+                      
+      <div>
+        <label for="shoe_size_box">Shoe size</label>
+          
+        <input id="shoe_size_box" name="shoe_size_from_query" value="<%= @current_user.shoe_size %>">
+          
+      </div>
+              
+      <div>
+        <label for="password_box">Password</label>
+        <input id="password_box" name="password_from_query" placeholder="Choose a new password..." type="password">
+      </div>
+    
+      <div>
+        <label for="password_confirmation_box">Password Confirmation</label>
+        <input id="password_confirmation_box" name="password_confirmation_from_query" placeholder="Confirm your new password..." type="password">
+      </div>
+
+      <button>
+        Update account
+      </button>
+    </form>
+  </div>
+</div>

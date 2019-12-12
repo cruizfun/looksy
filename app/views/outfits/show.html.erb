@@ -1,0 +1,86 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Outfit #<%= @outfit.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/outfits" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_outfit/<%= @outfit.id %>" class="btn btn-block btn-outline-secondary">
+          Delete outfit
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @outfit.image %>
+      </dd>
+
+      <dt>
+        Owner
+      </dt>
+      <dd>
+        <%= @outfit.owner_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@outfit.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@outfit.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit outfit
+    </h2>
+
+    <form action="/modify_outfit/<%= @outfit.id %>"  method="post" >
+      <div class="form-group">
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="image_from_query" class="form-control" value="<%= @outfit.image %>">
+      </div>
+
+      <div class="form-group">
+        <label for="owner_id_box">
+          Owner
+        </label>
+
+        <input type="text" id="owner_id_box" name="owner_id_from_query" class="form-control" value="<%= @outfit.owner_id %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update outfit
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
