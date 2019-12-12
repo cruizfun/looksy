@@ -45,7 +45,7 @@
     </td>
 
     <td>
-      <%= Like.where({ :post_id => post.id, :chosen_outfit => post.outfit1_id_identifier }).count %>
+      <%= Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit1_id }).count %>
     </td>
 
     <td>
@@ -53,15 +53,15 @@
     </td>
 
     <td>
-      <%= Like.where({ :post_id => post.id, :chosen_outfit => post.outfit2_id_identifier }).count %>
+      <%= Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit2_id }).count %>
     </td>
 
     <td>
-      <% if Like.where({ :post_id => post.id, :chosen_outfit => post.outfit1_id_identifier }).count >
-        Like.where({ :post_id => post.id, :chosen_outfit => post.outfit2_id_identifier }).count %>
+      <% if Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit1_id }).count >
+        Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit2_id }).count %>
       You should wear Outfit 1! 
-      <% elsif Like.where({ :post_id => post.id, :chosen_outfit => post.outfit2_id_identifier }).count > 
-      Like.where({ :post_id => post.id, :chosen_outfit => post.outfit1_id_identifier }).count %>
+      <% elsif Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit2_id }).count > 
+      Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit1_id }).count %>
       You should wear Outfit 2!
       <% else %>
       The Jury is still out!

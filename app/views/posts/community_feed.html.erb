@@ -51,12 +51,12 @@
 
         <% style_1 = Outfit.where({ :id => post.outfit1_id }).pluck(:image) %>
 
-      <tr>
+        <tr>
         <td>
           <%= @current_user.username %>
         </td>
         <td>
-          <img height=100 src="<% style_1 %>" class="img-responsive">
+          <img height=100 src="<%= style_1 %>" class="img-responsive">
         </td>
         <td>
           <% if vote1 == nil && vote2 == nil %>

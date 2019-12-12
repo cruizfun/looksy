@@ -13,15 +13,24 @@ class OutfitsController < ApplicationController
   end
 
   def create
-    @outfit = Outfit.new
-    @outfit.image = params.fetch("image_from_query")
-    @outfit.owner_id = params.fetch("owner_id_from_query")
+    @outfit1 = Outfit.new
+    @outfit1.image = params.fetch("image", "No image provided")
+    @outfit1.owner_id = session[:user_id]
 
-    if @outfit.valid?
-      @outfit.save
-      redirect_to("/outfits", { :notice => "Outfit created successfully." })
+    @outfit2 = Outfit.new
+    @outfit2.image = params.fetch("outfit2_from_query", "No image provided")
+    @outfit2.owner_id = session[:user_id]
+
+    if @outfit1.image == nil || @outfit2.image == nil
+      redirect_to("/new_post", { :notice => "Please make sure to upload two outfits so the community can vote!" })
     else
-      redirect_to("/outfits", { :notice => "Outfit failed to create successfully." })
+      @outfit1.save
+      @outfit2.save
+      new_post = Post.new
+      new_post.outfit1_id = @outfit1.id
+      new_post.outfit2_id = @outfit2.id
+      new_post.save
+      redirect_to("/feed", { :notice => "Outfit created successfully!" })
     end
   end
 
