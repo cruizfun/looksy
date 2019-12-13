@@ -97,9 +97,8 @@ Rails.application.routes.draw do
   
   # Route for editing account
   
-  match("/edit_user", { :controller => "users", :action => "edit_registration_form", :via => "get"})
-  
   match("/update_profile", { :controller => "users", :action => "update", :via => "post"})
+  match("/edit_user", { :controller => "users", :action => "edit_registration_form", :via => "get"})
   
   # Route for removing an account
   
