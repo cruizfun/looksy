@@ -29,6 +29,7 @@ class OutfitsController < ApplicationController
       new_post = Post.new
       new_post.outfit1_id = @outfit1.id
       new_post.outfit2_id = @outfit2.id
+      new_post.poster_id = @current_user.id
       new_post.save
       redirect_to("/feed", { :notice => "Outfit created successfully!" })
     end

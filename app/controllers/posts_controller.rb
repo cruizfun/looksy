@@ -6,8 +6,8 @@ class PostsController < ApplicationController
   end
 
   def user_index
-    @posts = Post.where({ :poster_id => @current_user.id }).order({ :created_at => :desc })
-
+    @posts = Post.all.order({ :created_at => :desc })
+    
     render({ :template => "posts/user_feed.html.erb" })
   end
 

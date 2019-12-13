@@ -35,9 +35,7 @@
 
       <tr>
 
-<%= @posts.first %>
-
-<% @posts.each do |post| %>
+<% @posts.where({ :poster_id => @current_user.id }).each do |post| %>
 
   <% style1 = Outfit.where({ :id => post.outfit1_id }).first %>
   <% style1_image = style1.image %>
@@ -46,9 +44,6 @@
   <% style2_image = style2.image %>
   
   <tr>
-    <td>
-    <%= @current_user.id %>
-    </td>
     <td>
       <img height=100 src="<%= style1_image %>" class="img-responsive">
     </td>
