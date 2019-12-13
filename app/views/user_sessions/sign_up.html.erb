@@ -1,6 +1,6 @@
 <h1>Sign up</h1>
 
-<form action="/post_user" method="post">
+<form action="/post_user" method="post" class="form-horizontal" enctype="multipart/form-data">
 
   <div>
     <label for="email_box">Email</label>
@@ -49,10 +49,9 @@
     </select>
   </div>
          
-  <div>
-    <label for="headshot_id_box">Headshot</label>
-      
-    <input type="text" id="headshot_id_box" name="headshot_id_from_query">
+  <div class="form-group">
+      <label for="headshot_id_box"> Choose a profile picture </label>
+      <input type="file" id="headshot_id_box" name="headshot_id_from_query" class="form-control" height=100>
   </div>
          
   <div>
@@ -82,5 +81,5 @@
 <hr>
 
 <p>
-  Or, <a href="/user_sign_in">Sign in</a> instead.
+  Or, <a href="/sign_in"> Sign in</a> instead.
 </p>

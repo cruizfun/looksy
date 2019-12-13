@@ -67,7 +67,7 @@ Rails.application.routes.draw do
           
   # READ
   match("/feed", { :controller => "posts", :action => "community_index", :via => "get"})
-  match("/feed/:user_id", { :controller => "posts", :action => "user_index", :via => "get"})
+  match("/feed/:user_username", { :controller => "posts", :action => "user_index", :via => "get"})
   
   # UPDATE
   
@@ -80,16 +80,16 @@ Rails.application.routes.draw do
 
   # Routes for signing up
 
-  match("/user_sign_up", { :controller => "users", :action => "new_registration_form", :via => "get"})
+  match("/sign_up", { :controller => "users", :action => "new_registration_form", :via => "get"})
   
   # Routes for signing in
-  match("/user_sign_in", { :controller => "user_sessions", :action => "new_session_form", :via => "get"})
+  match("/sign_in", { :controller => "user_sessions", :action => "new_session_form", :via => "get"})
   
   match("/user_verify_credentials", { :controller => "user_sessions", :action => "add_cookie", :via => "post"})
   
   # Route for signing out
   
-  match("/user_sign_out", { :controller => "user_sessions", :action => "remove_cookies", :via => "get"})
+  match("/sign_out", { :controller => "user_sessions", :action => "remove_cookies", :via => "get"})
   
   # Route for creating account into database 
 
@@ -99,7 +99,7 @@ Rails.application.routes.draw do
   
   match("/edit_user", { :controller => "users", :action => "edit_registration_form", :via => "get"})
   
-  match("/patch_user", { :controller => "users", :action => "update", :via => "post"})
+  match("/update_profile", { :controller => "users", :action => "update", :via => "post"})
   
   # Route for removing an account
   

@@ -4,7 +4,7 @@
   </h5>
 
   <div>
-    <form action="/patch_user" method="post">
+    <form action="/update_profile" method="post" class="form-horizontal" enctype="multipart/form-data">
       <div>
         <label for="email_box">Email</label>
         <input id="email_box" name="email_from_query" value="<%= @current_user.email %>">
@@ -29,9 +29,9 @@
         <label for="pant_size_box">Pant size</label>
         <input id="pant_size_box" name="pant_size_from_query" value="<%= @current_user.pant_size %>">
       </div>
-      <div>
-        <label for="headshot_id_box">Headshot</label>
-        <input id="headshot_id_box" name="headshot_id_from_query" value="<%= @current_user.headshot_id %>">
+      <div class="form-group">
+        <label for="headshot_id_box"> Choose a profile picture </label>
+        <input type="file" id="headshot_id_box" name="headshot_id_from_query" class="form-control" height=100>
       </div>
       <div>
         <label for="shoe_size_box">Shoe size</label>

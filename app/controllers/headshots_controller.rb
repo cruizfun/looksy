@@ -14,14 +14,8 @@ class HeadshotsController < ApplicationController
 
   def create
     @headshot = Headshot.new
-    @headshot.image = params.fetch("image_from_query")
-
-    if @headshot.valid?
-      @headshot.save
-      redirect_to("/headshots", { :notice => "Headshot created successfully." })
-    else
-      redirect_to("/headshots", { :notice => "Headshot failed to create successfully." })
-    end
+    @headshot.image = params.fetch("headshot_from_query")
+    @headshot.save
   end
 
   def update
