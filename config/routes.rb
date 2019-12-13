@@ -44,19 +44,7 @@ Rails.application.routes.draw do
 
   # CREATE
   match("/insert_outfit", { :controller => "outfits", :action => "create", :via => "post"})
-          
-  # READ
-  match("/outfits", { :controller => "outfits", :action => "index", :via => "get"})
   
-  match("/outfits/:id_from_path", { :controller => "outfits", :action => "show", :via => "get"})
-  
-  # UPDATE
-  
-  match("/modify_outfit/:id_from_path", { :controller => "outfits", :action => "update", :via => "post"})
-  
-  # DELETE
-  match("/delete_outfit/:id_from_path", { :controller => "outfits", :action => "destroy", :via => "get"})
-
   #------------------------------
 
   # Routes for the Post resource:

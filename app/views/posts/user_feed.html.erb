@@ -1,3 +1,17 @@
+<style>
+.btn {
+  
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  font-size: 14px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+.btn:hover {
+  background-color: RoyalBlue;
+}
+</style>
 
 <div class="container">
     <div class="row Header">
@@ -31,7 +45,7 @@
         <div class="col-lg-2"> Outfit 2 </div>
         <div class="col-lg-2"> # of Likes </div>
         <div class="col-lg-2"> Rosey's Vote </div>
-        <div class="col-lg-2"> Created </div>
+        <div class="col-lg-2"> Delete Post </div>
     </div>
 
   <% @posts.where({ :poster_id => @current_user.id }).each do |post| %>
@@ -57,7 +71,13 @@
               The Jury is still out!
           <% end %> 
         </div>
-        <div class="col-lg-2"> <%= time_ago_in_words(post.created_at) %> ago </div>
+        <div class="col-lg-2" align="center">
+          <form action="/delete_post/<%= post.id %>">
+          <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+            <button type="submit" class="btn">
+              Delete this outfit
+            </button>
+        </div>
     </div>
   <% end %>
 </div>
