@@ -20,12 +20,11 @@ class UsersController < ApplicationController
     save_status = @user.save
 
     if save_status == true
-      redirect_to("/sign_up", { :alert => "User account failed to create successfully."})
-      
-    else
       @user.save
       session.store(:user_id,  @user.id)
-      redirect_to("/feed", { :notice => "User account created successfully."})
+      redirect_to("/feed", { :notice => "User account created successfully."})      
+    else
+      redirect_to("/sign_up", { :alert => "User account failed to create successfully."})
     end
   end
     
