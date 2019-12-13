@@ -78,8 +78,13 @@
 
     </nav>
 
-  <p> <%= alert %> </p>
-  <p> <%= notice %> </p>
+  <div class="alert" style="font-size: 20px; color: Tomato;">
+  <%= alert %>
+  </div>
+
+  <div class="notice" style="font-size: 20px; color: MediumSeaGreen;">
+  <%= notice %>
+  </div>
 
     <%= yield %>
   </body>

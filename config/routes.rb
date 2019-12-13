@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
+  # Homepage
+
   match("/", { :controller => "posts", :action => "community_index", :via => "get"})
 
-  # Routes for the Headshot resource:
+  # Routes for the Headshot resource (no longer being used, maintained for future modification)
 
   # CREATE
   match("/insert_headshot", { :controller => "headshots", :action => "create", :via => "post"})
@@ -26,18 +28,6 @@ Rails.application.routes.draw do
   # CREATE
   match("/insert_vote", { :controller => "votes", :action => "create", :via => "post"})
           
-  # READ
-  match("/votes", { :controller => "votes", :action => "index", :via => "get"})
-  
-  match("/votes/:id_from_path", { :controller => "votes", :action => "show", :via => "get"})
-  
-  # UPDATE
-  
-  match("/modify_vote/:id_from_path", { :controller => "votes", :action => "update", :via => "post"})
-  
-  # DELETE
-  match("/delete_vote/:id_from_path", { :controller => "votes", :action => "destroy", :via => "get"})
-
   #------------------------------
 
   # Routes for the Outfit resource:
@@ -56,10 +46,6 @@ Rails.application.routes.draw do
   # READ
   match("/feed", { :controller => "posts", :action => "community_index", :via => "get"})
   match("/feed/:user_username", { :controller => "posts", :action => "user_index", :via => "get"})
-  
-  # UPDATE
-  
-  match("/modify_post/:id_from_path", { :controller => "posts", :action => "update", :via => "post"})
   
   # DELETE
   match("/delete_post/:id_from_path", { :controller => "posts", :action => "destroy", :via => "get"})

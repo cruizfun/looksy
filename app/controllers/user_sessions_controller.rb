@@ -14,7 +14,7 @@ class UserSessionsController < ApplicationController
       are_they_legit = user.authenticate(the_supplied_password)
     
       if are_they_legit == false
-        redirect_to("/", { :notice => "The email or password provided is incorrect." })
+        redirect_to("/sign_in", { :alert => "Password is incorrect." })
       else
         session.store(:user_id, user.id)
       
