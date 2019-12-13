@@ -13,11 +13,16 @@
 #  username        :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  headshot_id     :integer
 #
 
 class User < ApplicationRecord
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true
+  validates :bra_size, :presence => true
+  validates :dress_size, :presence => true
+  validates :pant_size, :presence => true
+  validates :shoe_size, :presence => true
+  validates :top_size, :presence => true
+  validates :username, :presence => true
   has_secure_password
 end

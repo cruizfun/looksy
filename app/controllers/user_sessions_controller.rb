@@ -20,7 +20,7 @@ eedd      else
         redirect_to("/", { :notice => "Signed in successfully." })
       end
     else
-      redirect_to("/user_sign_in", { :alert => "There's no user account with that email address." })
+      redirect_to("/sign_in", { :alert => "There's no user account with that email address." })
     end
   end
 
