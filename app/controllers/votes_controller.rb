@@ -14,15 +14,15 @@ class VotesController < ApplicationController
 
   def create
     @vote = Vote.new
-    @vote.user_id = params.fetch("user_id_from_query")
+    @vote.voter_id = session[:user_id]
     @vote.post_id = params.fetch("post_id_from_query")
     @vote.bestoutfit_id = params.fetch("bestoutfit_id_from_query")
 
-    if @vote.valid?
-      @vote.save
-      redirect_to("/votes", { :notice => "Vote created successfully." })
+    if @vote.post_id == nil
+      redirect_to("/feed", { :notice => "Vote failed to create successfully." })
     else
-      redirect_to("/votes", { :notice => "Vote failed to create successfully." })
+      @vote.save
+      redirect_to("/feed", { :notice => "Vote created successfully." })
     end
   end
 
