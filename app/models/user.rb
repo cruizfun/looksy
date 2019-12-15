@@ -6,11 +6,13 @@
 #  bra_size        :string
 #  dress_size      :integer
 #  email           :string
+#  height          :integer
 #  pant_size       :integer
 #  password_digest :string
 #  shoe_size       :integer
 #  top_size        :integer
 #  username        :string
+#  weight          :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

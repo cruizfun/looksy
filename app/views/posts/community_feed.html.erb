@@ -12,181 +12,164 @@
   background-color: Tomato;
 }
 
-div.polaroid {
-  width: 80%;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  .square {
+     position: relative;
+     width: 300px;     
+     height: 300px;
+     overflow: hidden;
+  }
+  img {
+     position: absolute;
+     max-width: 100%;
+     width: 100%;
+     height: auto;
+     top: 50%;     
+     left: 50%;
+     transform: translate( -50%, -50%);
+ }
+  img.landscape {
+    height: 100%;
+    width: auto;
 }
-
-img {width: 100%}
-
-div.container {
-  text-align: center;
-  padding: 10px 20px;
-}
-
-
 </style>
 
-<div class="row mb-3">
-  <div class="col-md-12" align="center">
-    <h1>
-      Rosey Style Feed
-    </h1>
-  </div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10" align="center">
+        <h1>
+          Rosey Style Feed
+          </h1>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10" align="center">
+        <body> 
+          <form action="/new_post">
+          <button type="submit" class="btn"> Upload a new post </button>
+          </form>
+        </body>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+  <hr>
+  <% @posts.each do |post| %>
+    <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
+    <% vote2 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit2_id }).first %>
+
+    <% vote1_count = Vote.where({ :bestoutfit_id => post.outfit1_id }).all.count %>
+    <% vote2_count = Vote.where({ :bestoutfit_id => post.outfit2_id }).all.count %>
+
+    <% style1 = Outfit.where({ :id => post.outfit1_id }).first %>
+    <% style1_image = style1.image %>
+
+    <% style2 = Outfit.where({ :id => post.outfit2_id }).first %>
+    <% style2_image = style2.image %>
+          
+    <% poster = User.where({ :id => post.poster_id }).first %>
+    <% poster_username = poster.username %>
+    
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-4"> 
+          <%= poster_username %> 
+        </div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-4">
+          <%= time_ago_in_words(post.created_at) %> ago
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-4">
+          <div class="square"> 
+          <img height=100 src="<%= style1_image %>" class="img-responsive" alt="Image"> 
+          </div>
+        </div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-4">
+          <div class="square">
+          <img height=100 src="<%= style2_image %>" class="img-responsive" alt="Image">
+          </div>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-4"> 
+          <% if vote1 == nil && vote2 ==nil %>
+            <form action="/insert_vote" method="post">
+              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+              <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">
+                <button type="submit" class="btn">
+                  Love this outfit!
+                </button>
+            </form>
+          <% elsif vote1 != nil %>
+            You upvoted this look!
+          <% else %>
+          <% end %>           
+        </div>
+        <div class="col-xs-2"></div>
+        <div class="col-xs-4">
+          <div class="square">
+          <img height=100 src="<%= style2_image %>" class="img-responsive" alt="Image">
+          </div>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
+  <% end %>
 </div>
 
-<div class="container-fluid">
-  <div class="row mb-3">
-    <div class="col-md-1"> 
-    </div>
-    <div class="col-md-1"> 
-    </div> 
-    <div class="col-md-1">
-      <span style="font-size: 20px; color: Indigo;" align="center"> 
-      Rosey User
-      </span>
-    </div> 
-    <div class="col-md-1">
-      <span style="font-size: 20px; color: Indigo;" align="center"> 
-      Look 1
-      </span>
-    </div>
-    <div class="col-md-1">
-      <span style="font-size: 20px; color: Indigo;" align="center"> 
-      Your Vote
-      </span>
-    </div>
-    <div class="col-md-1">
-      <span style="font-size: 20px; color: Indigo;" align="center"> 
-      Rosey Community Vote
-      </span>
-    </div>
-    <div class="col-md-1">
-      <span style="font-size: 20px; color: Indigo;" align="center"> 
-      Look 2
-      </span>
-    </div>
-    <div class="col-md-1">
-      <span style="font-size: 20px; color: Indigo;" align="center"> 
-      Your Vote
-      </span>
-    </div>
-    <div class="col-md-1">
-      <span style="font-size: 20px; color: Indigo;" align="center"> 
-      Rosey Community Vote
-      </span>
-    </div>    
-    <div class="col-md-1">
-      <span style="font-size: 20px; color: Indigo;" align="center"> 
-      Created
-      </span>
-    </div>
-    <div class="col-md-1"> 
-    </div>
-    <div class="col-md-1"> 
-    </div>
-  </div>
 
-  <% @posts.each do |post| %>
-    <div class="row" padding-top: 10px;
-  padding-right: 30px;
-  padding-bottom: 50px;
-  padding-left: 80px;>
-    <div class="col-md-1"> 
-    </div>
-    <div class="col-md-1"> 
-    </div>
+      <div class="col-md-1">
+        <% if vote1_count > vote2_count %>
+          Rosey loves this look!
 
-        <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
-        <% vote2 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit2_id }).first %>
+        <% else %>
+        <% end %>
+          
+      </div>
 
-        <% vote1_count = Vote.where({ :bestoutfit_id => post.outfit1_id }).all.count %>
-        <% vote2_count = Vote.where({ :bestoutfit_id => post.outfit2_id }).all.count %>
 
-        <% style1 = Outfit.where({ :id => post.outfit1_id }).first %>
-        <% style1_image = style1.image %>
+      <div class="col-md-1">
+        <% if vote1 == nil && vote2 ==nil %>
+          <form action="/insert_vote" method="post">
+            <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+            <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">
+              <button type="submit" class="btn">
+                Love this outfit!
+              </button>
+          </form>
 
-        <% style2 = Outfit.where({ :id => post.outfit2_id }).first %>
-        <% style2_image = style2.image %>
+        <% elsif vote2 != nil %>
+          You upvoted this look!
         
-        <% poster = User.where({ :id => post.poster_id }).first %>
-        <% poster_username = poster.username %>
-        
-    <div class="col-md-1">
-      <%= poster_username %>
-    </div>
+        <% else %>
+        <% end %>
+      </div>
 
-    <div class="col-md-1">
-      <img height=100 src="<%= style1_image %>" class="img-responsive">
-    </div>
+      <div class="col-md-1">
+        <% if vote2_count > vote1_count %>
+          Rosey loves this look!
 
-    <div class="col-md-1">
-      <% if vote1 == nil && vote2 ==nil %>
-        <form action="/insert_vote" method="post">
-          <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-          <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">
-            <button type="submit" class="btn">
-              Love this outfit!
-            </button>
-        </form>
+        <% else %>
+        <% end %>
+          
+      </div>
 
-      <% elsif vote1 != nil %>
-        You upvoted this look!
-      
-      <% else %>
-      <% end %>
-    </div>
-
-    <div class="col-md-1">
-      <% if vote1_count > vote2_count %>
-        Rosey loves this look!
-
-      <% else %>
-      <% end %>
-        
-    </div>
-
-    <div class="col-md-1">
-      <img height=100 src="<%= style2_image %>" class="img-responsive">
-    </div>
- 
-    <div class="col-md-1">
-      <% if vote1 == nil && vote2 ==nil %>
-        <form action="/insert_vote" method="post">
-          <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-          <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">
-            <button type="submit" class="btn">
-              Love this outfit!
-            </button>
-        </form>
-
-      <% elsif vote2 != nil %>
-        You upvoted this look!
-      
-      <% else %>
-      <% end %>
-    </div>
-
-    <div class="col-md-1">
-      <% if vote2_count > vote1_count %>
-        Rosey loves this look!
-
-      <% else %>
-      <% end %>
-        
-    </div>
-
-    <div class="col-md-1">
-      <%= time_ago_in_words(post.created_at) %> ago
-    </div>
-
-    <div class="col-md-1"> 
-    </div>
-    <div class="col-md-1"> 
-    </div>
-  
-    </div>
-  <% end %>
+      <div class="col-md-1"> 
+      </div>
+      <div class="col-md-1"> 
+      </div>
+    
+      </div>
+    <% end %>
 </div
   

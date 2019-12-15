@@ -1,7 +1,7 @@
 <style>
 .btn {
   
-  background-color: DodgerBlue; /* Blue background */
+  background-color: Violet; /* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */
   font-size: 14px; /* Set a font size */
@@ -9,14 +9,14 @@
 }
 
 .btn:hover {
-  background-color: RoyalBlue;
+  background-color: Tomato;
 }
 </style>
 
 <div class="container">
     <div class="row Header">
         <div class="col-sm-12" align="center"> 
-        <h1> Your Feed </h1>
+        <h1> <%= @current_user.username %>'s Feed </h1>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
         <div class="col-lg-4" align="center">
             <body> 
               <form action="/new_post">
-                <button> Upload a new post </button>
+                <button type="submit" class="btn"> Upload a new post </button>
               </form>
             </body>
         </div>
@@ -40,12 +40,12 @@
 
     <hr>
     <div class="row">
-        <div class="col-lg-2"> Outfit 1 </div>
-        <div class="col-lg-2"> Likes </div>
-        <div class="col-lg-2"> Outfit 2 </div>
-        <div class="col-lg-2"> # of Likes </div>
-        <div class="col-lg-2"> Rosey's Vote </div>
-        <div class="col-lg-2"> Delete Post </div>
+        <div class="col-lg-2" align="center"> Outfit 1 </div>
+        <div class="col-lg-2" align="center"> Likes </div>
+        <div class="col-lg-2" align="center"> Outfit 2 </div>
+        <div class="col-lg-2" align="center"> # of Likes </div>
+        <div class="col-lg-2" align="center"> Rosey's Vote </div>
+        <div class="col-lg-2" align="center"> Delete Post </div>
     </div>
 
   <% @posts.where({ :poster_id => @current_user.id }).each do |post| %>
@@ -56,11 +56,11 @@
     <% style2_image = style2.image %>
 
     <div class="row">
-        <div class="col-lg-2"> <img height=100 src="<%= style1_image %>" class="img-responsive"> </div>
-        <div class="col-lg-2"> <%= Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit1_id }).count %> </div>
-        <div class="col-lg-2"> <img height=100 src="<%= style2_image %>" class="img-responsive"> </div>
-        <div class="col-lg-2"> <%= Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit2_id }).count %> </div>
-        <div class="col-lg-2">       
+        <div class="col-lg-2" align="center"> <img height=100 src="<%= style1_image %>" class="img-responsive"> </div>
+        <div class="col-lg-2" align="center"> <%= Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit1_id }).count %> </div>
+        <div class="col-lg-2" align="center"> <img height=100 src="<%= style2_image %>" class="img-responsive"> </div>
+        <div class="col-lg-2" align="center"> <%= Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit2_id }).count %> </div>
+        <div class="col-lg-2" align="center">       
           <% if Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit1_id }).count >
             Vote.where({ :post_id => post.id, :bestoutfit_id => post.outfit2_id }).count %>
               You should wear Outfit 1! 
@@ -75,7 +75,7 @@
           <form action="/delete_post/<%= post.id %>">
           <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
             <button type="submit" class="btn">
-              Delete this outfit
+              Delete this post
             </button>
         </div>
     </div>

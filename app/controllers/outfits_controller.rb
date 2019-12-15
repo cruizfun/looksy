@@ -22,7 +22,7 @@ class OutfitsController < ApplicationController
     @outfit2.owner_id = session[:user_id]
 
     if @outfit1.image.to_s.empty? || @outfit2.image.to_s.empty?
-      redirect_to("/new_post", { :notice => "Please make sure to upload two outfits so the community can vote!" })
+      redirect_to("/new_post", { :alert => "Please make sure to upload two outfits so the community can vote!" })
     else
       @outfit1.save
       @outfit2.save
