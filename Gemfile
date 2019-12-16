@@ -19,6 +19,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt'
 # Add Uploader
 gem 'carrierwave', '~> 2.0'
+gem 'cloudinary'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
