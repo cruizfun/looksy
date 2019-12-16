@@ -17,7 +17,7 @@
      width: 300px;     
      height: 300px;
      overflow: hidden;
-  }
+}
   img {
      position: absolute;
      max-width: 100%;
@@ -26,33 +26,70 @@
      top: 50%;     
      left: 50%;
      transform: translate( -50%, -50%);
- }
+}
+
   img.landscape {
     height: 100%;
     width: auto;
 }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color: violet;
+}
+
+/* When you mouse over the container, fade in the overlay icon*/
+.square:hover .overlay {
+  opacity: 0.5;
+}
+
+/* The icon inside the overlay is positioned in the middle vertically and horizontally */
+.icon {
+  color: white;
+  font-size: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* When you move the mouse over the icon, change color */
+.fa-user:hover {
+  color: #eee;
+}
+
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-10" align="center">
+        <div class="col-1"></div>
+        <div class="col-10">
         <h1>
           Rosey Style Feed
           </h1>
         </div>
-        <div class="col-xs-1"></div>
+        <div class="col-1"></div>
     </div>
     <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-10" align="center">
+        <div class="col-1"></div>
+        <div class="col-10">
         <body> 
           <form action="/new_post">
           <button type="submit" class="btn"> Upload a new post </button>
           </form>
         </body>
         </div>
-        <div class="col-xs-1"></div>
+        <div class="col-1"></div>
     </div>
   <hr>
   <% @posts.each do |post| %>
@@ -72,74 +109,67 @@
     <% poster_username = poster.username %>
     
     <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-4"> 
+        <div class="col-1"></div>
+        <div class="col-4" align="left"> 
           <%= poster_username %> 
         </div>
-        <div class="col-xs-2"></div>
-        <div class="col-xs-4">
+        <div class="col-2"></div>
+        <div class="col-4" align="center">
           <%= time_ago_in_words(post.created_at) %> ago
         </div>
-        <div class="col-xs-1"></div>
+        <div class="col-1"></div>
     </div>
 
     <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-4">
-          <div class="square"> 
-          <img height=100 src="<%= style1_image %>" class="img-responsive" alt="Image"> 
-          </div>
-        </div>
-        <div class="col-xs-2"></div>
-        <div class="col-xs-4">
+        <div class="col-1"></div>
+        <div class="col-4">
           <div class="square">
-          <img height=100 src="<%= style2_image %>" class="img-responsive" alt="Image">
+            <img height=100 src="<%= style1_image %>" class="img" alt="Image"> 
+            <% if vote1 == nil && vote2 ==nil %>
+              <form action="/insert_vote" method="post">
+                <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+                <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">          
+                  <div class="overlay">
+                  <a href="/feed" class="icon" title="User Profile">
+                    <i class="fas fa-heart"></i>
+                  </a>
+                  </div>
+                </form>
+            <% else %>
+            <% end %>
+          </div>
+          
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4">
+          <div class="square">
+            <img height=100 src="<%= style2_image %>" class="img" alt="Image"> 
+              <form action="/insert_vote" method="post">
+                <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+                <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">          
+                  <div class="overlay">
+                  <a href="/feed" class="icon" title="User Profile">
+                    <i class="fas fa-heart"></i>
+                  </a>
+                  </div>
+              </form>
           </div>
         </div>
-        <div class="col-xs-1"></div>
+        <div class="col-1"></div>
     </div>
 
     <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-4"> 
+        <div class="col-1"></div>
+        <div class="col-4"> 
           <% if vote1 == nil && vote2 ==nil %>
-            <form action="/insert_vote" method="post">
-              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-              <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">
-                <button type="submit" class="btn">
-                  Love this outfit!
-                </button>
-            </form>
           <% elsif vote1 != nil %>
             You upvoted this look!
           <% else %>
           <% end %>           
         </div>
-        <div class="col-xs-2"></div>
-        <div class="col-xs-4">
-          <div class="square">
-          <img height=100 src="<%= style2_image %>" class="img-responsive" alt="Image">
-          </div>
-        </div>
-        <div class="col-xs-1"></div>
-    </div>
-
-  <% end %>
-</div>
-
-
-      <div class="col-md-1">
-        <% if vote1_count > vote2_count %>
-          Rosey loves this look!
-
-        <% else %>
-        <% end %>
-          
-      </div>
-
-
-      <div class="col-md-1">
-        <% if vote1 == nil && vote2 ==nil %>
+        <div class="col-2"></div>
+        <div class="col-4">
+          <% if vote1 == nil && vote2 ==nil %>
           <form action="/insert_vote" method="post">
             <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
             <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">
@@ -148,28 +178,35 @@
               </button>
           </form>
 
-        <% elsif vote2 != nil %>
-          You upvoted this look!
-        
-        <% else %>
-        <% end %>
-      </div>
-
-      <div class="col-md-1">
-        <% if vote2_count > vote1_count %>
-          Rosey loves this look!
-
-        <% else %>
-        <% end %>
+          <% elsif vote2 != nil %>
+            You upvoted this look!
           
-      </div>
+          <% else %>
+          <% end %>
+        </div>
+        <div class="col-1"></div>
+    </div>
 
-      <div class="col-md-1"> 
-      </div>
-      <div class="col-md-1"> 
-      </div>
-    
-      </div>
-    <% end %>
-</div
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-4">
+          <% if vote1_count > vote2_count %>
+            Rosey loves this look!
+
+          <% else %>
+          <% end %>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4">
+          <% if vote2_count > vote1_count %>
+            Rosey loves this look!
+
+          <% else %>
+          <% end %>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+  <% end %>
+</div>
   
