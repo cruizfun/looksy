@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   # CREATE
   match("/insert_outfit", { :controller => "outfits", :action => "create", :via => "post"})
+  match("/insert_outfit_test", { :controller => "outfits", :action => "create_test", :via => "post"})
   
   #------------------------------
 

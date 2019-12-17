@@ -7,9 +7,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   process :convert => 'png'
-  process :tags => ['post_picture']
+  process :tags => ['outfits_image']
 
   version :standard do
+    process :eager => true
     process :resize_to_fill => [100, 150, :north]
   end
 
@@ -18,7 +19,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def public_id
-    return model.short_name
+    return model.image
   end 
 
   # Override the directory where uploaded files will be stored.
