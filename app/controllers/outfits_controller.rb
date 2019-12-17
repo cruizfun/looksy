@@ -14,14 +14,14 @@ class OutfitsController < ApplicationController
 
   def create
     @outfit1 = Outfit.new
-    @outfit1.image = params.fetch("outfit1_from_query", "No image provided")
+    @outfit1.image = params.fetch("outfit1_from_query")
     @outfit1.owner_id = session[:user_id]
 
     @outfit2 = Outfit.new
-    @outfit2.image = params.fetch("outfit2_from_query", "No image provided")
+    @outfit2.image = params.fetch("outfit2_from_query")
     @outfit2.owner_id = session[:user_id]
 
-    if @outfit1.image.to_s.empty? || @outfit2.image.to_s.empty?
+    if @outfit1.image == nil || @outfit2.image == nil
       redirect_to("/new_post", { :alert => "Please make sure to upload two outfits so the community can vote!" })
     else
       @outfit1.save
