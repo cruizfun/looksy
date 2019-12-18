@@ -15,6 +15,7 @@
 #  weight          :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  headshot_id     :integer
 #
 
 class User < ApplicationRecord

@@ -1,4 +1,12 @@
 <style>
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 .btn {
   
   background-color: Violet; /* Violet background */
@@ -12,12 +20,13 @@
   background-color: Tomato;
 }
 
-  .square {
-     position: relative;
-     width: 300px;     
-     height: 300px;
-     overflow: hidden;
+.square {
+  position: relative;
+  width: 300px;     
+  height: 300px;
+  overflow: hidden;
 }
+
   img {
      position: absolute;
      max-width: 100%;
@@ -68,27 +77,22 @@
 
 </style>
 
-
 <div class="container">
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
+      <div class="col" align="left">
         <h1>
           Rosey Style Feed
-          </h1>
-        </div>
-        <div class="col-1"></div>
+        </h1>
+      </div>
     </div>
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
+      <div class="col" align="left">
         <body> 
           <form action="/new_post">
-          <button type="submit" class="btn"> Upload a new post </button>
+            <button type="submit" class="btn"> Upload a new post </button>
           </form>
         </body>
-        </div>
-        <div class="col-1"></div>
+      </div>
     </div>
   <hr>
   <% @posts.each do |post| %>
@@ -106,24 +110,23 @@
           
     <% poster = User.where({ :id => post.poster_id }).first %>
     <% poster_username = poster.username %>
+    <% poster_avatar = Headshot.where({ :id => poster.headshot_id }).first.image %>
     
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col-4" align="left"> 
-          <%= poster_username %> 
-        </div>
-        <div class="col-2"></div>
-        <div class="col-4" align="center">
-          <%= time_ago_in_words(post.created_at) %> ago
-        </div>
-        <div class="col-1"></div>
-    </div>
+        <div class="col-12" align="left">
+    <div class="media border p-3">
 
+          <img src="<%= poster_avatar %>" alt="Avatar" class="avatar">
+      <div class="media body">
+          <%= poster_username %> | Posted <%= time_ago_in_words(post.created_at) %> ago
+      </div>
+    </div>
+    </div>
+    </div>
     <div class="row">
-        <div class="col-1"></div>
         <div class="col-4">
           <div class="square">
-            <img height=100 src="<%= style1_image %>" class="img" alt="Image"> 
+            <img height=100 src="<%= style1_image %>" class="img" width="50" height="50" alt="image"> 
             <% if vote1 == nil && vote2 ==nil %>
               <form action="/insert_vote" method="post">
                 <div class="overlay">
@@ -132,16 +135,16 @@
                   <a href="/feed" class="icon" title="User Profile">
                     <i class="fas fa-heart"></i>
                   </a>
-                  </div>
-                </form>
+                </div>
+              </form>
             <% else %>
             <% end %>
           </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-4"></div>
         <div class="col-4">
           <div class="square">
-            <img height=100 src="<%= style2_image %>" class="img" alt="Image"> 
+            <img height=100 src="<%= style2_image %>" class="img" width="50" height="50" alt="Image"> 
             <% if vote1 == nil && vote2 ==nil %>
               <form action="/insert_vote" method="post">
                 <div class="overlay">
@@ -156,11 +159,10 @@
             <% end %>
           </div>
         </div>
-        <div class="col-1"></div>
     </div>
 
     <div class="row">
-        <div class="col-1"></div>
+        <div class="col-4"></div>
         <div class="col-4"> 
           <% if vote1 == nil && vote2 ==nil %>
           <% elsif vote1 != nil %>
@@ -176,11 +178,9 @@
           <% else %>
           <% end %>
         </div>
-        <div class="col-1"></div>
     </div>
 
     <div class="row">
-        <div class="col-1"></div>
         <div class="col-4">
           <% if vote1_count > vote2_count %>
             Rosey loves this look!
@@ -188,7 +188,7 @@
           <% else %>
           <% end %>
         </div>
-        <div class="col-2"></div>
+        <div class="col-4"></div>
         <div class="col-4">
           <% if vote2_count > vote1_count %>
             Rosey loves this look!
@@ -196,7 +196,6 @@
           <% else %>
           <% end %>
         </div>
-        <div class="col-1"></div>
     </div>
 
   <% end %>
