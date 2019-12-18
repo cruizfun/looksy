@@ -26,24 +26,17 @@
   border: medium #FFB6C1 solid;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .3s ease;
-  background-color: white;
+.zoom {
+  transition: transform .2s; /* Animation */
 }
 
-.square:hover .overlay {
-  opacity: 0.5;
-  color: violet;
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+* {
+  touch-action: pan-right pinch-zoom;
+}
 
 </style>
 
@@ -78,25 +71,14 @@
 
   
     <div class="row-p-b-5">
-        <div class="flex-container-images">
-            <%= cl_image_tag(style1_image, :width=>190, :height=>400, :crop=>"fit") %>
-
-
-              <% if vote1 == nil && vote2 ==nil %>
-                <form action="/insert_vote" method="post">
-                  <div class="overlay">
-                    <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-                    <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">          
-                    <a href="/feed" class="icon" title="User Profile">
-                      <i class="fas fa-heart"></i>
-                    </a>
-                  </div>
-                </form>
-              <% else %>
-              <% end %>
-
-            <%= cl_image_tag(style2_image, :width=>190, :height=>400, :crop=>"fit") %>
+      <div class="flex-container-images">
+        <div class="zoom">
+            <img src="<%= cloudinary_url(style1_image, :width=>190, :height=>400, :crop=>"fit")%>">
         </div>
+        <div class="zoom">
+            <img src="<%= cloudinary_url(style2_image, :width=>190, :height=>400, :crop=>"fit")%>">
+        </div>
+      </div>
     </div>    
 
   <% end %>
