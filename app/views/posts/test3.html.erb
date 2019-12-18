@@ -46,9 +46,7 @@
 }
 </style>
 
-  <% @posts.each do |post| %>
-
-    <% if post.nil? %>
+<% @posts.each do |post| %>
     
     <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
     <% vote2 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit2_id }).first %>
@@ -115,6 +113,4 @@
     </div>  
 
     </div>
-    <% else %>
-    <% end %>
   <% end %>
