@@ -22,6 +22,14 @@
         <input id="username_box" name="username_from_query" value="<%= @current_user.username %>">
       </div>
 
+      <div class="row">
+        <label for="headshot_box"> Profile Pic </label>
+          <input type="file" id="headshot_box" name="headshot_from_query" class="form-control">
+            <button type="submit" class="btn">
+              Add Profile Pic
+            </button>   
+      </div>
+
       <div>
         <label for="bra_size_box">Bra size</label>
           <select id="bra_size_box" name="bra_size_from_query">

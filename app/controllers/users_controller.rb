@@ -39,6 +39,11 @@ class UsersController < ApplicationController
   end
 
   def update
+
+    @headshot = Headshot.new
+    @headshot.image = params.fetch("headshot_from_query")
+    @headshot.save
+
     @user = @current_user
     @user.email = params.fetch("email_from_query")
     @user.password = params.fetch("password_from_query")
@@ -49,6 +54,8 @@ class UsersController < ApplicationController
     @user.dress_size = params.fetch("dress_size_from_query")
     @user.pant_size = params.fetch("pant_size_from_query")
     @user.shoe_size = params.fetch("shoe_size_from_query")
+    @user.headshot_id = @headshot.id
+
     
     if @user.valid?
       @user.save
