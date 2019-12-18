@@ -27,5 +27,6 @@ class User < ApplicationRecord
   validates :shoe_size, :presence => true
   validates :top_size, :presence => true
   validates :username, :presence => true
+  validates :headshot_id, :presence => true
   has_secure_password
 end

@@ -1,8 +1,5 @@
 <style>
 
-* { border: thin red solid; }
-
-
 .btn {
   
   background-color: Violet; /* Violet background */
@@ -124,16 +121,22 @@
           
     <% poster = User.where({ :id => post.poster_id }).first %>
     <% poster_username = poster.username %>
-    <% poster_avatar = Headshot.where({ :id => poster.headshot_id }).first.image %>
+    <% if poster.headshot_id == nil %>
+    <% poster_avatar = cl_image_tag("non_existing_id.png", 
+                 :width => 100, :height => 100, 
+                 :crop => :thumb, :gravity => :face, :radius => 20, 
+                 :default_image => "avatar.png") %>
+    <% else %>
+      <% poster_avatar = Headshot.where({ :id => poster.headshot_id }).first.image %>
+    <% end %>
     
    <div class="flex-container">
-            <img src="<%= poster_avatar %>" alt="Avatar" class="avatar">
             <%= poster_username %> | Posted <%= time_ago_in_words(post.created_at) %> ago
-      </div>
+    </div>
 
   
     <div class="row">
-        <div class="col-4">
+        <div class="flex-container">
           <div class="square">
             <img height=100 src="<%= style1_image %>" class="img" width="50" height="50" alt="image"> 
             <% if vote1 == nil && vote2 ==nil %>
@@ -149,9 +152,6 @@
             <% else %>
             <% end %>
           </div>
-        </div>
-        <div class="col-4"></div>
-        <div class="col-4">
           <div class="square">
             <img height=100 src="<%= style2_image %>" class="img" width="50" height="50" alt="Image"> 
             <% if vote1 == nil && vote2 ==nil %>
