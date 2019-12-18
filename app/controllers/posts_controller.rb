@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def community_index
     @posts = Post.all.order({ :created_at => :desc })
 
-    render({ :template => "posts/test2.html.erb" })
+    render({ :template => "posts/test3.html.erb" })
   end
 
   def user_index
@@ -48,8 +48,12 @@ class PostsController < ApplicationController
   def destroy
     the_id = params.fetch("post_id_from_query")
     @post = Post.where({ :id => the_id }).at(0)
+    corr_outfit1 = Outfit.where({ :id => @post.outfit1_id }).first
+    corr_outfit2 = Outfit.where({ :id => @post.outfit2_id }).first
 
     @post.destroy
+    corr_outfit1.destroy
+    corr_outfit2.destroy
 
     redirect_to("/feed", { :notice => "Post deleted successfully."} )
   end
