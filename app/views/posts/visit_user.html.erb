@@ -1,0 +1,191 @@
+<style>
+
+
+.flex-post-panel {
+   display: flex;
+   width: 400px;
+   height: 455px;
+   border: thin WhiteSmoke solid;
+   flex-wrap: wrap;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.flex-post-title {
+   display: inline-flex;
+   width: 400px;
+   height: 40px;
+   padding-left: 5px;
+   padding-right: 5px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   flex-wrap: nowrap;
+   flex-direction: row;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.flex-divider {
+   display: inline-flex;
+   width: 400px;
+   height: 20px;
+   flex-wrap: nowrap;
+   flex-direction: row;
+   justify-content: flex-start;
+   align-items: center;
+}
+
+.flex-photo-column {
+  display: inline-flex;
+  width: 190px;
+  height: 500 px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vote-box {
+  display: inline-flex
+  width: 190px;
+  height: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: medium #D8BFD8 solid;
+}
+
+.button {
+  background-color: White; /* Blue background */
+  border: none; /* Remove borders */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+.look-header {
+  font-family: 'Nunito', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: Thistle;
+}
+
+.span-user {
+  vertical-align: middle;
+  line-height: 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+  color: Gray;
+  font-weight: bold;
+}
+
+.span-timestamp {
+  vertical-align: middle;
+  justify-content: right;
+  line-height: 40px;
+}
+
+.post-details {
+  background: White;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  width: 300px;
+  height: 40px;
+  font-family: 'Montserrat', sans-serif;
+  color: Gray;
+  font-size: 12px;
+}
+
+.event-tag {
+  border-radius: 8px;
+  background: WhiteSmoke;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 80px;
+  height: 25px;
+  vertical-align: center;
+  text-align: center;
+  margin: auto;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: Thistle;
+  font-size: 10px;
+}
+
+</style>
+
+<% @posts.each do |post| %>
+
+    <% vote1_count = Vote.where({ :bestoutfit_id => post.outfit1_id }).all.count %>
+    <% vote2_count = Vote.where({ :bestoutfit_id => post.outfit2_id }).all.count %>
+
+    <% style1 = Outfit.where({ :id => post.outfit1_id }).first %>
+    <% style1_image = style1.image %>
+
+    <% style2 = Outfit.where({ :id => post.outfit2_id }).first %>
+    <% style2_image = style2.image %>
+          
+    <% poster = User.where({ :id => post.poster_id }).first %>
+    <% poster_username = poster.username %>
+    <% if poster.headshot_id == nil %>
+      <% poster_avatar = cl_image_tag("https://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill,d_avatar2.png/non_existing_id.jpg") %>
+    <% else %>
+      <% poster_avatar = Headshot.where({ :id => poster.headshot_id }).first.image %>
+    <% end %>
+
+    <% post_event = Event.where({ :id => post.event_id }).first %>
+    <% event_tag = post_event.tag %>
+
+
+
+<div class="flex-post-panel">
+  <div class="flex-post-title">
+    <div class="post-details">
+      <a href="/feed/<%= poster_username %>">
+        <img src="<%= poster_avatar %>" class="avatar"> 
+      </a>
+      <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
+        <span class="span-user" style="font-size:100%;"> <%= poster_username %> | </span> 
+      </a>
+      <span class="span-timestamp" style="font-size:80%"> <%= time_ago_in_words(post.created_at) %> ago </span>
+    </div>
+    <div class="event-tag">
+      <%= event_tag %>
+    </div>
+  </div>
+  
+  <div class="row-p-b-5">
+    <div class="flex-photo-column">
+      <span class="look-header"> </span>
+      <img src="<%= cloudinary_url(style1_image, :width=>190, :height=>400, :crop=>"fit")%>">
+      <div class="vote-box">
+      </div>
+        <% if vote1_count > vote2_count %>
+          <span style="font-family:'Nunito', sans-serif; color:#D8BFD8; font-weight: bold;"> Looksy's Vote  </span>
+        <% else %>
+        <% end %>   
+    </div>
+    <div class="flex-photo-column">
+      <span class="look-header"></span>
+        <img src="<%= cloudinary_url(style2_image, :width=>190, :height=>400, :crop=>"fit")%>">
+          <div class="vote-box">
+          </div>
+            <% if vote2_count > vote1_count %>
+              <span style="font-family:'Nunito', sans-serif; font-weight: bold, color: Thistle;"> Looksy's Vote  </span>
+            <% else %>
+            <% end %>         
+    </div>
+  </div>  
+</div>
+  <div class="flex-divider"> </div>
+  <% end %>

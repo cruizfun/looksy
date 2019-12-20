@@ -1,6 +1,7 @@
 <style>
 
-.flex-panel {
+
+.flex-post-panel {
    display: flex;
    width: 400px;
    height: 455px;
@@ -12,7 +13,7 @@
    box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.flex-header {
+.flex-post-title {
    display: inline-flex;
    width: 400px;
    height: 40px;
@@ -36,10 +37,10 @@
    align-items: center;
 }
 
-.flex-column {
+.flex-photo-column {
   display: inline-flex;
   width: 190px;
-  height: 450 px;
+  height: 500 px;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-between;
@@ -49,7 +50,7 @@
 .vote-box {
   display: inline-flex
   width: 190px;
-  height: 70px;
+  height: 50px;
   padding-top: 10px;
   padding-bottom: 10px;
   flex-wrap: wrap;
@@ -121,8 +122,6 @@
   font-size: 10px;
 }
 
-
-
 </style>
 
 <% @posts.each do |post| %>
@@ -150,11 +149,10 @@
     <% post_event = Event.where({ :id => post.event_id }).first %>
     <% event_tag = post_event.tag %>
 
-<div class="flex-divider">
-</div>
 
-<div class="flex-panel">
-  <div class="flex-header">
+
+<div class="flex-post-panel">
+  <div class="flex-post-title">
     <div class="post-details">
       <a href="/feed/<%= poster_username %>">
         <img src="<%= poster_avatar %>" class="avatar"> 
@@ -170,7 +168,7 @@
   </div>
   
   <div class="row-p-b-5">
-    <div class="flex-column">
+    <div class="flex-photo-column">
       <span class="look-header"> </span>
       <img src="<%= cloudinary_url(style1_image, :width=>190, :height=>400, :crop=>"fit")%>">
       <div class="vote-box">
@@ -191,7 +189,7 @@
         <% else %>
         <% end %>   
     </div>
-    <div class="flex-column">
+    <div class="flex-photo-column">
       <span class="look-header"></span>
         <img src="<%= cloudinary_url(style2_image, :width=>190, :height=>400, :crop=>"fit")%>">
           <div class="vote-box">

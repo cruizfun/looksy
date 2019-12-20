@@ -12,7 +12,9 @@ class PostsController < ApplicationController
   end
 
   def visit_user
-    @posts = Post.all.order({ :created_at => :desc })
+    given_username = params.fetch("user_username")
+    selected_user = User.where({ :username => given_username }).first
+    @posts = Post.where({ :poster_id => selected_user.id }).order({ :created_at => :desc })
     
     render({ :template => "posts/visit_user.html.erb" })
   end
