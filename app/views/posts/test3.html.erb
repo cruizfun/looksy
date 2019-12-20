@@ -49,20 +49,23 @@
 .vote-box {
   display: inline-flex
   width: 190px;
-  height: 50px;
+  height: 70px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 
-.vote-label {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: normal;
-  font-size: 12px;
-  color: Gray;
+.vote-open {
+  
+
 }
 
+.vote-close {
+
+}
 .avatar {
   width: 30px;
   height: 30px;
@@ -86,6 +89,11 @@
 .span-user {
   vertical-align: middle;
   line-height: 40px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-size: 12px;
+  color: Gray;
+  font-weight: bold;
 }
 
 .span-timestamp {
@@ -120,6 +128,8 @@
   color: Thistle;
   font-size: 10px;
 }
+
+
 
 </style>
 
@@ -176,43 +186,40 @@
           <form action="/insert_vote" method="post">
           <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
           <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
-          <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8"> </i> </button>
+          <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8; font-size:30px;"> </i> </button>
           </form>
-        <% else %>
+        <% elsif vote1 == nil %>
+          <i class="far fa-heart" style="color:#D8BFD8; font-size:30px;"> </i>
+        <% elsif vote1 != nil %>
+          <i class="fas fa-heart" style="color:#D8BFD8; font-size:35px;"> </i>
         <% end %>
       </div>
-        <% if vote1 == nil && vote2 ==nil %>
-        <% elsif vote1 != nil %>
-          <span style="font-size:80%"> You <i class="fas fa-heart" style="color:#D8BFD8"> </i> this look! </span>
-        <% else %>
-        <% end %>
         <% if vote1_count > vote2_count %>
-          <span style="font-size:80%"> Rosey loves this look! </span>
+          <span style="font-family:'Nunito', sans-serif; color:#D8BFD8; font-weight: bold;"> Looksy's Vote  </span>
         <% else %>
         <% end %>   
     </div>
     <div class="flex-column">
       <span class="look-header"></span>
-          <img src="<%= cloudinary_url(style2_image, :width=>190, :height=>400, :crop=>"fit")%>">
-          <% if vote1 == nil && vote2 ==nil %>
+        <img src="<%= cloudinary_url(style2_image, :width=>190, :height=>400, :crop=>"fit")%>">
+          <div class="vote-box">
+            <% if vote1 == nil && vote2 ==nil %>
               <form action="/insert_vote" method="post">
-                <div class="vote-box">
-                  <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-                  <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
-                  <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8"> </i> </button>
-                </div>
-          <% else %>
-          <% end %>
-          <% if vote1 == nil && vote2 ==nil %>
-          <% elsif vote2 != nil %>
-            <span style="font-size:80%"> You <i class="fas fa-heart" style="color:#D8BFD8"> </i> this look! </span>
-          <% else %>
-          <% end %>
-          <% if vote2_count > vote1_count %>
-            <span style="font-size:80%"> Rosey loves this look! </span>
-          <% else %>
-          <% end %>          
-      </div>
+              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+              <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
+              <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8; font-size:30px;"> </i> </button>
+              </form>
+            <% elsif vote2 == nil %>
+              <i class="far fa-heart" style="color:#D8BFD8; font-size:30px;"> </i>
+            <% elsif vote2 != nil %>
+              <i class="fas fa-heart" style="color:#D8BFD8; font-size:35px;"></i>
+            <% end %>
+          </div>
+            <% if vote2_count > vote1_count %>
+              <span style="font-family:'Nunito', sans-serif; font-weight: bold, color: Thistle;"> Looksy's Vote  </span>
+            <% else %>
+            <% end %>         
+    </div>
   </div>  
 </div>
   <div class="flex-divider"> </div>
