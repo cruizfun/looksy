@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
 
+  # Routes for the Event resource:
+
+  # CREATE
+  match("/insert_event", { :controller => "events", :action => "create", :via => "post"})
+          
+  # READ
+  match("/events", { :controller => "events", :action => "index", :via => "get"})
+  
+  match("/events/:id_from_path", { :controller => "events", :action => "show", :via => "get"})
+  
+  # UPDATE
+  
+  match("/modify_event/:id_from_path", { :controller => "events", :action => "update", :via => "post"})
+  
+  # DELETE
+  match("/delete_event/:id_from_path", { :controller => "events", :action => "destroy", :via => "get"})
+
+  #------------------------------
+
   # Homepage
 
   match("/", { :controller => "posts", :action => "community_index", :via => "get"})
@@ -45,10 +64,11 @@ Rails.application.routes.draw do
           
   # READ
   match("/feed", { :controller => "posts", :action => "community_index", :via => "get"})
-  match("/feed/:user_username", { :controller => "posts", :action => "user_index", :via => "get"})
+  match("/feed/profile", { :controller => "posts", :action => "user_index", :via => "get"})
+  match("/feed/:user_username", { :controller => "posts", :action => "visit_user", :via => "get"})
   
   # DELETE
-  match("/delete_post/:id_from_path", { :controller => "posts", :action => "destroy", :via => "get"})
+  match("/delete_post", { :controller => "posts", :action => "destroy", :via => "get"})
 
   #------------------------------
 
@@ -71,8 +91,8 @@ Rails.application.routes.draw do
   
   # Route for editing account
   
-  match("/update_profile", { :controller => "users", :action => "update", :via => "post"})
   match("/edit_user", { :controller => "users", :action => "edit_registration_form", :via => "get"})
+  match("/update_profile", { :controller => "users", :action => "update", :via => "post"})
   
   # Route for removing an account
   

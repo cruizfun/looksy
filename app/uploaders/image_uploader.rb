@@ -6,7 +6,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   include Cloudinary::CarrierWave
 
-  process :convert => 'png'
+  process :convert => 'jpg'
   process :tags => ['post_picture']
   process :eager => true
 

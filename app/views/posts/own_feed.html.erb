@@ -35,6 +35,20 @@
     </div>
 
     <div class="row">
+        <div class="col-lg-4"> 
+        </div>
+        <div class="col-lg-4" align="center">
+            <body> 
+              <form action="/edit_user">
+                <button type="submit" class="btn"> Update Profile </button>
+              </form>
+            </body>
+        </div>
+        <div class="col-lg-4">
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-xs-12"></div>
     </div>
 
@@ -72,7 +86,7 @@
           <% end %> 
         </div>
         <div class="col-lg-2" align="center">
-          <form action="/delete_post/<%= post.id %>">
+          <form action="/delete_post">
           <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
             <button type="submit" class="btn">
               Delete this post

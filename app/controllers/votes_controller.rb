@@ -9,7 +9,7 @@ class VotesController < ApplicationController
       redirect_to("/feed", { :notice => "Vote failed to create successfully." })
     else
       @vote.save
-      redirect_to("/feed", { :notice => "Vote created successfully." })
+      redirect_to("/feed")
     end
   end
 end

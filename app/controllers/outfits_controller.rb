@@ -12,28 +12,6 @@ class OutfitsController < ApplicationController
     render({ :template => "outfits/show.html.erb" })
   end
 
-  def create
-    @outfit1 = Outfit.new
-    @outfit1.image = params.fetch("outfit1_from_query")
-    @outfit1.owner_id = session[:user_id]
-
-    @outfit2 = Outfit.new
-    @outfit2.image = params.fetch("outfit2_from_query")
-    @outfit2.owner_id = session[:user_id]
-
-    if @outfit1.image == nil || @outfit2.image == nil
-      redirect_to("/new_post", { :alert => "Please make sure to upload two outfits so the community can vote!" })
-    else
-      @outfit1.save
-      @outfit2.save
-      new_post = Post.new
-      new_post.outfit1_id = @outfit1.id
-      new_post.outfit2_id = @outfit2.id
-      new_post.poster_id = @current_user.id
-      new_post.save
-      redirect_to("/feed", { :notice => "Outfit created successfully!" })
-    end
-  end
 
   def update
     the_id = params.fetch("id_from_path")

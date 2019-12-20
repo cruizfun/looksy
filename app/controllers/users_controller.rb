@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
 
     @headshot = Headshot.new
-    @headshot.image = params.fetch("headshot_from_query")
+    @headshot.image = params.fetch("headshot_from_query", "none")
     @headshot.save
 
     @user = User.new
