@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <script src="https://kit.fontawesome.com/e8d4476375.js" crossorigin="anonymous"></script>
 
-
     <!-- Connect Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css">
 
@@ -24,8 +23,7 @@
     <%= csp_meta_tag %>
 
     <!-- Add Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Nunito&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
@@ -33,17 +31,21 @@
     </head>
 
 <style>
+
   .flex-pagerunner {
    display: inline-flex;
    width: 400px;
-   height: 60px;
-   padding-left: 16px;
+   height: 50px;
+   padding-left: 6px;
    padding-top: 30px;
-   padding-bottom: 30px;
+   padding-bottom: 10px;
    flex-wrap: nowrap;
    flex-direction: row;
    justify-content: flex-start;
    align-items: center;
+   font-family: 'Nunito', sans-serif;
+   font-weight: bold;
+   color: Thistle;
 }
 
   .flex-nav-footer {
@@ -69,16 +71,14 @@
   height: 50px;
 }
 
-
 </style>
 
 <body>
   <div class="flex-pagerunner">
-    <a href="/feed" style="color:#FFB6C1; font-size:200%; text-decoration: none;"> 
-      <i class="fas fa-frog" style="color:#FFB6C1;"></i> Looksy </a>
+    <a href="/feed" style="font-size:200%; text-decoration: none;"> 
+      <span style="color:Thistle;"> Looksy </span> </a>
   </div>
   
-
   <% if @current_user == nil %>
   <% else %>
     <div class="fixed-bottom">
@@ -86,16 +86,16 @@
         <div class="flex-nav-footer">
          
                 <a class="nav-link" href="/feed"> <button class="nav-button"> 
-                  <i class="fas fa-frog" style="font-size:25px; color:#FFB6C1;"></i> 
+                  <i class="fas fa-frog" style="font-size:25px; color:Thistle;"></i> 
                   </button> <span class="sr-only">(current)</span></a>
                 <a class="nav-link" href="/new_post"> <button class="nav-button"> 
-                  <i class="far fa-plus-square" style="font-size:25px; color:#FFB6C1;"></i>
+                  <i class="far fa-plus-square" style="font-size:25px; color:Thistle;"></i>
                   </button></a>
                 <a class="nav-link" href="/feed/profile"> <button class="nav-button"> 
-                  <i class="fas fa-female" style="font-size:25px; color:#FFB6C1;"></i>
+                  <i class="fas fa-female" style="font-size:25px; color:Thistle;"></i>
                   </button></a>
                 <a class="nav-link" href="/sign_out"> <button class="nav-button"> 
-                  <i class="fas fa-sign-out-alt" style="font-size:25px; color:#FFB6C1;"></i>
+                  <i class="fas fa-sign-out-alt" style="font-size:25px; color:Thistle;"></i>
                   </button></a>
           
         </div>

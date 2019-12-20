@@ -36,7 +36,6 @@
    align-items: center;
 }
 
-
 .flex-column {
   display: inline-flex;
   width: 190px;
@@ -44,7 +43,7 @@
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-between;
-  align-items: left;
+  align-items: center;
 }
 
 .vote-box {
@@ -64,24 +63,24 @@
   color: Gray;
 }
 
-
 .avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: medium #FFB6C1 solid;
+  border: medium #D8BFD8 solid;
 }
 
 .button {
   background-color: White; /* Blue background */
   border: none; /* Remove borders */
-  color: #D3D3D3; /* Text Color */
   cursor: pointer; /* Mouse pointer on hover */
 }
 
 .look-header {
-  font-family: 'Pacifico', cursive;
-  font-size:90%
+  font-family: 'Nunito', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  color: Thistle;
 }
 
 .span-user {
@@ -101,7 +100,6 @@
   padding-bottom: 0px;
   width: 300px;
   height: 40px;
-
   font-family: 'Montserrat', sans-serif;
   color: Gray;
   font-size: 12px;
@@ -112,14 +110,14 @@
   background: WhiteSmoke;
   padding-top: 5px;
   padding-bottom: 5px;
-  width: 100px;
-  height: 30px;
+  width: 80px;
+  height: 25px;
   vertical-align: center;
   text-align: center;
   margin: auto;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
-  color: Gray;
+  color: Thistle;
   font-size: 10px;
 }
 
@@ -171,22 +169,21 @@
   
   <div class="row-p-b-5">
     <div class="flex-column">
-      <span class="look-header"> Look 1 </span>
+      <span class="look-header"> </span>
       <img src="<%= cloudinary_url(style1_image, :width=>190, :height=>400, :crop=>"fit")%>">
       <div class="vote-box">
         <% if vote1 == nil && vote2 ==nil %>
           <form action="/insert_vote" method="post">
           <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
           <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
-          <button class="button"> <i class="fas fa-heart" style="color:#FFB6C1"> 
-          <span class="vote-label"> Upvote this look! </span> </i> </button>
+          <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8"> </i> </button>
           </form>
         <% else %>
         <% end %>
       </div>
         <% if vote1 == nil && vote2 ==nil %>
         <% elsif vote1 != nil %>
-          <span style="font-size:80%"> You <i class="fas fa-heart" style="color:#FFB6C1"> </i> this look! </span>
+          <span style="font-size:80%"> You <i class="fas fa-heart" style="color:#D8BFD8"> </i> this look! </span>
         <% else %>
         <% end %>
         <% if vote1_count > vote2_count %>
@@ -195,21 +192,20 @@
         <% end %>   
     </div>
     <div class="flex-column">
-      <span class="look-header"> Look 2 </span>
+      <span class="look-header"></span>
           <img src="<%= cloudinary_url(style2_image, :width=>190, :height=>400, :crop=>"fit")%>">
           <% if vote1 == nil && vote2 ==nil %>
               <form action="/insert_vote" method="post">
                 <div class="vote-box">
                   <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
                   <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
-                  <button class="button"> <i class="fas fa-heart" style="color:#FFB6C1"> 
-                    <span class="vote-label"> Upvote this look! </span> </i> </button>
+                  <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8"> </i> </button>
                 </div>
           <% else %>
           <% end %>
           <% if vote1 == nil && vote2 ==nil %>
           <% elsif vote2 != nil %>
-            <span style="font-size:80%"> You <i class="fas fa-heart" style="color:#FFB6C1"> </i> this look! </span>
+            <span style="font-size:80%"> You <i class="fas fa-heart" style="color:#D8BFD8"> </i> this look! </span>
           <% else %>
           <% end %>
           <% if vote2_count > vote1_count %>
