@@ -32,7 +32,7 @@
 
 <style>
 
-  .flex-pagerunner {
+.flex-pagerunner {
    display: inline-flex;
    width: 400px;
    height: 50px;
@@ -41,7 +41,7 @@
    padding-bottom: 10px;
    flex-wrap: nowrap;
    flex-direction: row;
-   justify-content: flex-start;
+   justify-content: space-between;
    align-items: center;
    font-family: 'Nunito', sans-serif;
    font-weight: bold;
@@ -74,30 +74,34 @@
 </style>
 
 <body>
-  <div class="flex-pagerunner">
-    <a href="/feed" style="font-size:200%; text-decoration: none;"> 
-      <span style="color:Thistle;"> Looksy </span> </a>
-  </div>
+  <% if @current_user != nil %>
+    <div class="flex-pagerunner">
+      <a href="/feed" style="font-size:200%; text-decoration: none;"> 
+        <span style="color:Thistle;"> Looksy </span> 
+      </a>
+      <a href="/sign_out" style="font-size:80%; font-weight:lighter; color:Gray; text-decoration: none;">
+        <span> Sign Out </span>
+      </a>
+    </div>
+  <% else %>
+    <div class="flex-pagerunner">
+    </div>
+  <% end %>
   
   <% if @current_user == nil %>
   <% else %>
     <div class="fixed-bottom">
       <nav class="navbar-xs navbar-light bg-white" style="width:400px;">
         <div class="flex-nav-footer">
-         
-                <a class="nav-link" href="/feed"> <button class="nav-button"> 
-                  <i class="fas fa-frog" style="font-size:25px; color:Thistle;"></i> 
-                  </button> <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="/new_post"> <button class="nav-button"> 
-                  <i class="far fa-plus-square" style="font-size:25px; color:Thistle;"></i>
-                  </button></a>
-                <a class="nav-link" href="/feed/profile"> <button class="nav-button"> 
-                  <i class="fas fa-female" style="font-size:25px; color:Thistle;"></i>
-                  </button></a>
-                <a class="nav-link" href="/sign_out"> <button class="nav-button"> 
-                  <i class="fas fa-sign-out-alt" style="font-size:25px; color:Thistle;"></i>
-                  </button></a>
-          
+          <a class="nav-link" href="/feed"> <button class="nav-button"> 
+            <i class="fas fa-home" style="font-size:25px; color:Thistle;"></i> 
+              </button> <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/new_post"> <button class="nav-button"> 
+            <i class="far fa-plus-square" style="font-size:25px; color:Thistle;"></i>
+              </button></a>
+          <a class="nav-link" href="/feed/profile"> <button class="nav-button"> 
+            <i class="fas fa-female" style="font-size:25px; color:Thistle;"></i>
+              </button></a>
         </div>
       </nav>
     </div>

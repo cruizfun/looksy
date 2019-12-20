@@ -77,8 +77,8 @@ Rails.application.routes.draw do
   match("/sign_up", { :controller => "users", :action => "new_registration_form", :via => "get"})
   
   # Routes for signing in
-  match("/sign_in", { :controller => "user_sessions", :action => "new_session_form", :via => "get"})
   
+  match("/sign_in", { :controller => "user_sessions", :action => "new_session_form", :via => "get"})
   match("/user_verify_credentials", { :controller => "user_sessions", :action => "add_cookie", :via => "post"})
   
   # Route for signing out

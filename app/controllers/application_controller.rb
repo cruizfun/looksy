@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   end
   
   def force_user_sign_in
+    request.session_options = request.session_options.dup
+    request.session_options[:expire_after]= 2.minutes
+    request.session_options.freeze
     if @current_user == nil
-      request.session_options = request.session_options.dup
-      request.session_options[:expire_after]= 30.minutes
-      request.session_options.freeze
       redirect_to("/sign_in", { :notice => "You have to sign in first." })
     end
   end

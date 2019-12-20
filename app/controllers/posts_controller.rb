@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def community_index
     @posts = Post.all.order({ :created_at => :desc })
 
-    render({ :template => "posts/test3.html.erb" })
+    render({ :template => "posts/looksy.html.erb" })
   end
 
   def user_index

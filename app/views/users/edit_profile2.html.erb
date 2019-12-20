@@ -1,0 +1,191 @@
+<style>
+
+.flex-panel {
+   display: flex;
+   width: 400px;
+   height: 455px;
+   border: thin Silver solid;
+   flex-wrap: wrap;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;  
+}
+
+.flex-header {
+   display: inline-flex;
+   width: 400px;
+   height: 40px;
+   padding-left: 5px;
+   padding-right: 5px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   flex-wrap: nowrap;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+}
+
+.flex-items {
+   display: flex;
+   width: 400px;
+   height: 55px;
+   border: thin WhiteSmoke solid;
+   flex-wrap: wrap;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.btn {
+  
+  background-color: Thistle; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  font-size: 14px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  font-family: 'Montserrat', sans-serif;
+  width: 160px;
+}
+
+.btn:hover {
+  background-color: Violet;
+}
+</style>
+
+<div class="flex-panel">
+  <div class="flex-header">
+    Sign Up
+  </div>
+  <form action="/post_user" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="flex-item">
+      <input id="email_box" name="email_from_query" placeholder="Email" type="text" 
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+    </div>
+    <div class="flex-item">
+      <input type="text" id="username_box" name="username_from_query" placeholder="Username" 
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+    </div>
+    <div class="flex-item">
+      <input type="file" id="headshot_box" name="headshot_from_query" 
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;" class="form-control">
+    </div>
+    <div class="flex-item">
+      <label for="bra_size_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;">Bra size</label>
+      <select id="bra_size_box" name="bra_size_from_query" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        <option value="30B"> 30B </option>
+        <option value="30C"> 30C </option>
+        <option value="32B"> 32B </option>
+        <option value="30D"> 30D </option>
+        <option value="30E"> 30E </option>
+        <option value="30F"> 30F </option>
+        <option value="30G"> 30G </option>
+        <option value="32A"> 32A </option>
+        <option value="32B"> 32B </option>
+        <option value="32C"> 32C </option>
+        <option value="32D"> 32D </option>
+        <option value="32E"> 32E </option>
+        <option value="32F"> 32F </option>
+        <option value="32G"> 32G </option>
+        <option value="34A"> 34A </option>
+        <option value="34B"> 34B </option>
+        <option value="34C"> 34C </option>
+        <option value="34D"> 34D </option>
+        <option value="34E"> 34E </option>
+        <option value="34F"> 34F </option>
+        <option value="34G"> 34G </option>
+        <option value="36A"> 36A </option>
+        <option value="36B"> 36B </option>
+        <option value="36C"> 36C </option>
+        <option value="36D"> 36D </option>
+        <option value="36E"> 36E </option>
+        <option value="36F"> 36F </option>
+        <option value="36G"> 36G </option>
+        <option value="38A"> 38A </option>
+        <option value="38B"> 38B </option>
+        <option value="38C"> 38C </option>
+        <option value="38D"> 38D </option>
+        <option value="38E"> 38E </option>
+        <option value="38F"> 38F </option>
+        <option value="38G"> 38G </option>
+      </select>
+    </div>
+    <div class="flex-item">
+      <label for="top_size_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;">Top size</label>
+      <select id="top_size_box" name="top_size_from_query" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        <option value="00"> 00 </option>
+        <option value="0"> 0 </option>
+        <option value="2"> 2 </option>
+        <option value="4"> 4 </option>
+        <option value="6"> 6 </option>
+        <option value="8"> 8 </option>
+        <option value="10"> 10 </option>
+        <option value="12"> 12 </option>
+        <option value="14"> 14 </option>
+      </select>
+    </div>
+    <div class="flex-item">
+      <label for="dress_size_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;">Dress size</label>
+      <select id="dress_size_box" name="dress_size_from_query" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        <option value="00"> 00 </option>
+        <option value="0"> 0 </option>
+        <option value="2"> 2 </option>
+        <option value="4"> 4 </option>
+        <option value="6"> 6 </option>
+        <option value="8"> 8 </option>
+        <option value="10"> 10 </option>
+        <option value="12"> 12 </option>
+        <option value="14"> 14 </option>
+      </select>
+    </div>
+    <div class="flex-item">
+      <label for="pant_size_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;">Pant size</label>
+        <select id="pant_size_box" name="pant_size_from_query" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+          <option value="00"> 00 </option>
+          <option value="0"> 0 </option>
+          <option value="2"> 2 </option>
+          <option value="4"> 4 </option>
+          <option value="6"> 6 </option>
+          <option value="8"> 8 </option>
+          <option value="10"> 10 </option>
+          <option value="12"> 12 </option>
+          <option value="14"> 14 </option>
+        </select>
+    </div>
+    <div class="flex-item">
+      <label for="shoe_size_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;">Shoe size</label>
+      <select id="shoe_size_box" name="shoe_size_from_query" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        <option value="5"> 5 </option>
+        <option value="5.5"> 5.5 </option>
+        <option value="6"> 6 </option>
+        <option value="6.5"> 6.5 </option>
+        <option value="7"> 7 </option>
+        <option value="7.5"> 7.5 </option>
+        <option value="8"> 8 </option>
+        <option value="8.5"> 8.5 </option>
+        <option value="9"> 9 </option>
+        <option value="9.5"> 9.5 </option>
+        <option value="10"> 10 </option>
+        <option value="10.5"> 10.5 </option>
+        <option value="11"> 11 </option>
+        <option value="11.5"> 11.5 </option>
+        <option value="12"> 12 </option>
+        <option value="12.5"> 12.5 </option>
+        <option value="13"> 13 </option>
+        <option value="13.5"> 13.5 </option>
+      </select>
+    </div>
+    <div class="flex-item">
+      <input id="password_box" name="password_from_query" placeholder="Password" type="password" 
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+    </div>
+    <div class="flex-item">
+      <input id="password_confirmation_box" name="password_confirmation_from_query" placeholder="Confirm Password" type="password"
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+    </div>
+    <div class="flex-item">
+      <button class="btn" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        Sign up
+      </button>
+    </div>
+  </form>
+</div>
