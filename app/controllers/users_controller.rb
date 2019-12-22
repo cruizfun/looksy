@@ -16,11 +16,6 @@ class UsersController < ApplicationController
     @user.password = params.fetch("password_from_query")
     @user.password_confirmation = params.fetch("password_confirmation_from_query")
     @user.username = params.fetch("username_from_query")
-    @user.bra_size = params.fetch("bra_size_from_query")
-    @user.top_size = params.fetch("top_size_from_query")
-    @user.dress_size = params.fetch("dress_size_from_query")
-    @user.pant_size = params.fetch("pant_size_from_query")
-    @user.shoe_size = params.fetch("shoe_size_from_query")
     @user.headshot_id = @headshot.id
 
     save_status = @user.save

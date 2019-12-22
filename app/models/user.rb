@@ -21,12 +21,8 @@
 class User < ApplicationRecord
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true
-  validates :bra_size, :presence => true
-  validates :dress_size, :presence => true
-  validates :pant_size, :presence => true
-  validates :shoe_size, :presence => true
-  validates :top_size, :presence => true
   validates :username, :presence => true, :uniqueness => true
+  validates_format_of :username, with: /^[a-zA-Z0-9_]*$/, :multiline => true
   validates :headshot_id, :presence => true
   has_secure_password
 end

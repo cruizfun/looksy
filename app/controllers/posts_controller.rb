@@ -13,8 +13,8 @@ class PostsController < ApplicationController
 
   def visit_user
     given_username = params.fetch("user_username")
-    selected_user = User.where({ :username => given_username }).first
-    @posts = Post.where({ :poster_id => selected_user.id }).order({ :created_at => :desc })
+    @selected_user = User.where({ :username => given_username }).first
+    @userposts = Post.where({ :poster_id => @selected_user.id }).order({ :created_at => :desc })
     
     render({ :template => "posts/visit_user.html.erb" })
   end
@@ -57,11 +57,11 @@ class PostsController < ApplicationController
 
   def destroy
     the_id = params.fetch("post_id_from_query")
-    @post = Post.where({ :id => the_id }).at(0)
-    corr_outfit1 = Outfit.where({ :id => @post.outfit1_id }).first
-    corr_outfit2 = Outfit.where({ :id => @post.outfit2_id }).first
+    post = Post.where({ :id => the_id }).at(0)
+    corr_outfit1 = Outfit.where({ :id => post.outfit1_id }).first
+    corr_outfit2 = Outfit.where({ :id => post.outfit2_id }).first
 
-    @post.destroy
+    post.destroy
     corr_outfit1.destroy
     corr_outfit2.destroy
 
