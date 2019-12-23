@@ -15,14 +15,16 @@
    display: inline-flex;
    width: 400px;
    height: 40px;
-   padding-left: 5px;
+   padding-left: 40px;
    padding-right: 5px;
    padding-top: 5px;
-   padding-bottom: 5px;
+   padding-bottom: 30px;
    flex-wrap: nowrap;
    flex-direction: row;
-   justify-content: center;
+   justify-content: flex-start;
    align-items: center;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 14px;
 }
 
 .flex-items {
@@ -54,18 +56,12 @@
 
 <div class="flex-panel">
   <div class="flex-header">
-    Sign Up
+    Edit Profile
   </div>
-  <form action="/post_user" method="post" class="form-horizontal" enctype="multipart/form-data">
+  <form action="/update_profile" method="post" class="form-horizontal" enctype="multipart/form-data">
     <div class="flex-item">
-      <input id="email_box" name="email_from_query" placeholder="Email" type="text" 
-        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
-    </div>
-    <div class="flex-item">
-      <input type="text" id="username_box" name="username_from_query" placeholder="Username" 
-        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
-    </div>
-    <div class="flex-item">
+      <label for="headshot_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;"> 
+        Profile Picture: </label>
       <input type="file" id="headshot_box" name="headshot_from_query" 
         style="font-size:80%; font-family: 'Montserrat', sans-serif;" class="form-control">
     </div>
@@ -175,16 +171,34 @@
       </select>
     </div>
     <div class="flex-item">
-      <input id="password_box" name="password_from_query" placeholder="Password" type="password" 
-        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+      <label for="height_feet_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;"> Height </label>
+      <select id="height_feet_box" name="height_feet_from_query" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        <option value="3"> 3' </option>
+        <option value="4"> 4' </option>
+        <option value="5"> 5' </option>
+        <option value="6"> 6' </option>
+        <option value="7"> 7' </option>
+      </select>
+      <select id="height_inch_box" name="height_inch_from_query" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        <option value="1"> 1" </option>
+        <option value="2"> 2" </option>
+        <option value="3"> 3" </option>
+        <option value="4"> 4" </option>
+        <option value="5"> 5" </option>
+        <option value="6"> 6" </option>
+        <option value="7"> 7" </option>
+        <option value="8"> 8" </option>
+        <option value="9"> 9" </option>
+        <option value="10"> 10" </option>
+        <option value="11"> 11" </option>
+      </select>
     </div>
     <div class="flex-item">
-      <input id="password_confirmation_box" name="password_confirmation_from_query" placeholder="Confirm Password" type="password"
-        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+      
     </div>
     <div class="flex-item">
       <button class="btn" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
-        Sign up
+        Edit Profile
       </button>
     </div>
   </form>

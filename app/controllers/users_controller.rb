@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
     
   def edit_registration_form
-    render({ :template => "users/edit_profile.html.erb" })
+    render({ :template => "users/edit_profile2.html.erb" })
   end
 
   def update
@@ -40,15 +40,17 @@ class UsersController < ApplicationController
     @headshot.save
 
     @user = @current_user
-    @user.email = params.fetch("email_from_query")
-    @user.password = params.fetch("password_from_query")
-    @user.password_confirmation = params.fetch("password_confirmation_from_query")
-    @user.username = params.fetch("username_from_query")
+    @user.email = @current_user.email
+    @user.password = @current_user.password_digest
+    @user.username = @current_user.username
     @user.bra_size = params.fetch("bra_size_from_query")
     @user.top_size = params.fetch("top_size_from_query")
     @user.dress_size = params.fetch("dress_size_from_query")
     @user.pant_size = params.fetch("pant_size_from_query")
     @user.shoe_size = params.fetch("shoe_size_from_query")
+  
+    height = params.fetch("height_feet_from_query").to_s + params.fetch("height_inch_from_query").to_s
+    @user.height = height
     @user.headshot_id = @headshot.id
 
     
