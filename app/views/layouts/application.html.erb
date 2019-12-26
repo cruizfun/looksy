@@ -50,7 +50,7 @@
 
   .flex-nav-footer {
    display: inline-flex;
-   width: 420px;
+   width: 100%;
    height: 50px;
    padding-left: 0px;
    padding-top: 0px;
@@ -74,19 +74,6 @@
 </style>
 
 <body>
-  <% if @current_user != nil %>
-    <div class="flex-pagerunner">
-      <a href="/feed" style="font-size:200%; text-decoration: none;"> 
-        <span style="color:Thistle;"> Looksy </span> 
-      </a>
-      <a href="/sign_out" style="font-size:80%; font-weight:lighter; color:Gray; text-decoration: none;">
-        <span> Sign Out </span>
-      </a>
-    </div>
-  <% else %>
-    <div class="flex-pagerunner">
-    </div>
-  <% end %>
   
   <% if @current_user == nil %>
   <% else %>

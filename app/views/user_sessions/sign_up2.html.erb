@@ -1,6 +1,6 @@
 <style>
 
-  .row-Looksy-Header {
+.row-Looksy-Header {
    height: 40px;
    padding-bottom: 200px;
    font-family: 'Montserrat', sans-serif;
@@ -8,7 +8,6 @@
 }
 
 .btn {
-  
   background-color: Thistle; /* Blue background */
   border: none; /* Remove borders */
   color: white; /* White text */
@@ -21,6 +20,7 @@
 .btn:hover {
   background-color: Orchid;
 }
+
 </style>
 
 <div class="container">
@@ -34,16 +34,16 @@
         Wear your best and help others wear their best too
       </p>
     </div>
-    <div class="row Sign-In">
+    <div class="row Sign-Up">
       <div class="col-xs-4" style="margin:auto;"></div>
       <div class="col-xs-4" style="margin:auto;">
         <span>
-          Sign in
+          Join the community
         </span>
       </div>
       <div class="col-xs-4" style="margin:auto;"></div>
     </div>
-    <div class="row Sign-In Alert">
+    <div class="row Sign-Up Alert">
       <div class="col-xs-4" style="margin:auto;"></div>
       <div class="col-xs-4" style="margin:auto;">
         <span style="font-size: 12px; color: Tomato;">
@@ -55,37 +55,53 @@
       </div>
       <div class="col-xs-4" style="margin:auto;"></div>
     </div>
-  <form action="/user_verify_credentials" method="post" class="form-horizontal" enctype="multipart/form-data">
-    <div class="row Sign-In Email">
+  <form action="/post_user" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="row Sign-Up Email">
       <div class="col-xs-4" style="margin:auto;"></div>
       <div class="col-xs-4" style="margin:auto;">
         <input id="email_box" name="email_from_query" placeholder="Email" type="text" 
-          style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
       </div>
       <div class="col-xs-4" style="margin:auto;"></div>
     </div>
-    <div class="row Sign-In Password">
+    <div class="row Sign-Up Username">
+      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-xs-4" style="margin:auto;">
+        <input type="text" id="username_box" name="username_from_query" placeholder="Username" 
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+      </div>
+      <div class="col-xs-4" style="margin:auto;"></div>
+    </div>
+    <div class="row Sign-Up Password">
       <div class="col-xs-4" style="margin:auto;"></div>
       <div class="col-xs-4" style="margin:auto;">
         <input id="password_box" name="password_from_query" placeholder="Password" type="password" 
-          style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
       </div>
       <div class="col-xs-4" style="margin:auto;"></div>
     </div>
-    <div class="row Sign-In Button">
+    <div class="row Sign-Up Password Confirmation">
+      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-xs-4" style="margin:auto;">
+        <input id="password_confirmation_box" name="password_confirmation_from_query" placeholder="Confirm Password" type="password"
+        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+      </div>
+      <div class="col-xs-4" style="margin:auto;"></div>
+    </div>
+    <div class="row Sign-Up Password Confirmation">
       <div class="col-xs-4" style="margin:auto;"></div>
       <div class="col-xs-4" style="margin:auto;">
         <button class="btn" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
-          Sign in
+          Sign up
         </button>
       </div>
       <div class="col-xs-4" style="margin:auto;"></div>
     </div>
-    <div class="row Alternative Sign-Up">
+    <div class="row Alternative Sign-In">
       <div class="col-xs-4" style="margin:auto;"></div>
       <div class="col-xs-4" style="margin:auto;">
         <p>
-          <a href="/sign_up" style="font-size:90%; font-family: 'Montserrat', sans-serif;"> Sign Up </a> instead.
+          <a href="/sign_in" style="font-size:90%; font-family: 'Montserrat', sans-serif;"> Sign in </a> instead.
         </p>
       </div>
       <div class="col-xs-4" style="margin:auto;"></div>

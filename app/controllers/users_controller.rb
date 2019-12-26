@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action(:force_user_sign_in, { :only => [:new_registration_form, :create] })
   
   def new_registration_form
-    render({ :template => "user_sessions/sign_up.html.erb" })
+    render({ :template => "user_sessions/sign_up2.html.erb" })
   end
 
   def create
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       session.store(:user_id,  @user.id)
       redirect_to("/feed", { :notice => "User account created successfully."})      
     else
-      redirect_to("/sign_up", { :alert => "User account failed to create successfully."})
+      redirect_to("/sign_up2", { :alert => "User account failed to create successfully."})
     end
   end
     
