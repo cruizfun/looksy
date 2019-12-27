@@ -44,12 +44,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable, :confirmable, :lockable
+  #devise :database_authenticatable, :registerable,
+         #:recoverable, :rememberable, :validatable, :trackable, :confirmable, :lockable
   validates :email, :uniqueness => { :case_sensitive => false }
   validates :email, :presence => true
   validates :username, :presence => true, :uniqueness => true
   validates_format_of :username, with: /^[a-zA-Z0-9_]*$/, :multiline => true
-  validates :headshot_id, :presence => true
   has_secure_password
 end

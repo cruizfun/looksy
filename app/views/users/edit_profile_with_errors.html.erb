@@ -10,6 +10,14 @@
     </div>
   <% end %>
   <% end %>
+
+  <% if @headshot.errors.any? %>
+  <% @headshot.errors.full_messages.each do |message| %>
+    <div class="alert" style="font-size: 20px; color: Tomato;">
+      <%= message %>
+    </div>
+  <% end %>
+  <% end %>
   
   <div>
     <form action="/update_profile" method="post" class="form-horizontal" enctype="multipart/form-data">

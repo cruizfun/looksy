@@ -1,5 +1,4 @@
 <style>
-  * { border: thin red solid;}
 
   .flex-pagerunner {
     display: inline-flex;
@@ -50,6 +49,16 @@
     font-size: 10px;
   }
 
+  .button {
+    background-color: White; /* Blue background */
+    border: none; /* Remove borders */
+    cursor: pointer; /* Mouse pointer on hover */
+}
+
+.img-raised{
+    box-shadow: $box-shadow-raised;
+}
+
 </style>
 
 <div class="container">
@@ -64,6 +73,8 @@
       </a>
     </div>
   </div>
+
+  <hr>
   
   <% @posts.each do |post| %>
     
@@ -81,8 +92,9 @@
           
     <% poster = User.where({ :id => post.poster_id }).first %>
     <% poster_username = poster.username %>
+    <% poster_username = @current_user.username %>
     <% if poster.headshot_id == nil %>
-      <% poster_avatar = cl_image_tag("https://res.cloudinary.com/demo/image/facebook/w_100,h_100,c_fill,d_avatar2.png/non_existing_id.jpg") %>
+      <% poster_avatar = "/default-avatar.png" %>
     <% else %>
       <% poster_avatar = Headshot.where({ :id => poster.headshot_id }).first.image %>
     <% end %>
@@ -93,7 +105,7 @@
     <div class="row Post-Panel">
       <div class="flex-postdetails">
         <div class="col-xs-10">
-          <a href="/feed/<%= poster_username %>">
+          <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
             <img src="<%= poster_avatar %>" class="avatar"> 
           </a>
           <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
@@ -107,11 +119,65 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-6">
-        <img src="<%= cloudinary_url(style1_image, :width=>190, :height=>400, :crop=>"fit")%>">
+      <div class="col-6">
+        <div class="card">
+          <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
+            <div class="card-body">
+              <p class="card-text"> 
+                <% if vote1 == nil && vote2 ==nil %>
+                  <form action="/insert_vote" method="post">
+                  <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+                  <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
+                  <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8; font-size:25px;"> </i> </button>
+                  </form>
+                <% elsif vote1 == nil %>
+                  <i class="far fa-heart" style="color:#D8BFD8; font-size:25px;"> </i>
+                <% elsif vote1 != nil %>
+                  <i class="fas fa-heart" style="color:#D8BFD8; font-size:30px;"></i>
+                  <span span style="font-family:'Nunito', sans-serif; color:#D8BFD8; font-weight: bold; font-size: 14px;"> 
+                    Your vote 
+                  </span>
+                <% end %>
+              </p>
+              <p class="card-text">
+                <% if vote1_count > vote2_count %>
+                  <span style="font-family:'Nunito', sans-serif; color:Tomato; font-weight: bold; font-size: 14px;"> Looksy's Vote  </span>
+                <% else %>
+                <% end %>
+              </p>
+            </div>
+        </div>
       </div>
-      <div class="col-xs-6">
-        <img src="<%= cloudinary_url(style2_image, :width=>190, :height=>400, :crop=>"fit")%>">
+      <div class="col-6">
+        <div class="card">
+          <img src="<%= cloudinary_url(style2_image, :crop=>"fit")%>" class="card-img-top">
+            <div class="card-body">
+              <p class="card-text"> 
+                <% if vote1 == nil && vote2 ==nil %>
+                  <form action="/insert_vote" method="post">
+                  <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+                  <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
+                  <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8; font-size:25px;"> </i> </button>
+                  </form>
+                <% elsif vote2 == nil %>
+                  <i class="far fa-heart" style="color:#D8BFD8; font-size:25px;"> </i>
+                <% elsif vote2 != nil %>
+                  <i class="fas fa-heart" style="color:#D8BFD8; font-size:30px;"></i>
+                  <span span style="font-family:'Nunito', sans-serif; color:#D8BFD8; font-weight: bold; font-size: 14px;"> 
+                    Your vote 
+                  </span>
+                <% end %>
+              </p>
+              <p class="card-text">
+                <% if vote2_count > vote1_count %>
+                  <span style="font-family:'Nunito', sans-serif; color:Tomato; font-weight: bold; font-size: 14px;"> 
+                    Looksy's Vote  
+                  </span>
+                <% else %>
+                <% end %>
+              </p>
+            </div>
+        </div>
       </div>
       <div class="col-xs-6"></div>
       <div class="col-xs-6"></div>

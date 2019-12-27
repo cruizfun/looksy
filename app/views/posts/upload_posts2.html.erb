@@ -1,0 +1,139 @@
+<style>
+
+
+  .flex-pagerunner {
+    display: inline-flex;
+    width: 100%;
+    padding-bottom: 5%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: Thistle;
+  }
+
+  .flex-header {
+    display: flex;
+    width: 100%
+    padding-bottom: 20px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;  
+  }
+
+  .flex-entry-fields {
+    display: flex;
+    width: 100%
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;  
+  }
+
+.btn {
+  background-color: Thistle; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  font-size: 14px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  font-family: 'Montserrat', sans-serif;
+  width: 160px;
+}
+
+.btn:hover {
+  background-color: Orchid;
+}
+
+</style>
+
+<div class="container">
+
+  <div class="row Running-Header">
+
+    <div class="flex-pagerunner">
+      <a href="/feed" style="font-size:200%; text-decoration: none;"> 
+        <span style="color:Thistle;"> Looksy </span> 
+      </a>
+      <a href="/sign_out" style="font-size:80%; font-weight:lighter; color:Gray; text-decoration: none;">
+        <span> Sign Out </span>
+      </a>
+    </div>
+
+  </div>
+  
+  <hr>
+
+  <div class="flex-header">
+  
+    <div class="row Upload post">
+      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-xs-4" style="margin:auto;">
+        Upload a new post
+      </div>
+      <div class="col-xs-4" style="margin:auto;"></div>
+    </div>
+    <div class="row Upload Posts Alert">
+      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-xs-4" style="margin:auto; color:Tomato; font-size:80%;">
+        <%= alert %>
+      </div>
+      <div class="col-xs-4" style="margin:auto;"></div>
+    </div>
+
+  </div>
+
+  <div class="flex-entry-fields">
+    <form action="/insert_post" method="post" class="form-horizontal" enctype="multipart/form-data">
+
+      <div class="row Upload Outfit 1">
+        <div class="col-xs-4" style="margin:auto;"></div>
+        <div class="col-xs-4" style="margin:auto;">
+          <label for="outfit1_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;"> Outfit 1 </label>
+            <input type="file" id="outfit1_box" name="outfit1_from_query" class="form-control" 
+              style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        </div>
+        <div class="col-xs-4" style="margin:auto;"></div>
+      </div>
+
+      <div class="row Upload Outfit 2">
+        <div class="col-xs-4" style="margin:auto;"></div>
+        <div class="col-xs-4" style="margin:auto;">
+          <label for="outfit2_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;"> Outfit 2 </label>
+            <input type="file" id="outfit2_box" name="outfit2_from_query" class="form-control"
+              style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+        </div>
+        <div class="col-xs-4" style="margin:auto;"></div>
+      </div>
+
+      <div class="row Select Event Tag">
+        <div class="col-xs-4" style="margin:auto;"></div>
+        <div class="col-xs-4" style="margin:auto;">
+          <label for="event_box" style="font-size:80%; font-family: 'Montserrat', sans-serif;"> Event Type </label>
+            <select id="event_box" name="event_type_from_query" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+              <option disabled selected value> -- select an option -- </option>
+              <option value="Date"> Date </option>
+              <option value="Professional"> Professional </option>
+              <option value="Casual"> Casual </option>
+              <option value="Formal"> Formal </option>
+            </select>
+        </div>
+        <div class="col-xs-4" style="margin:auto;"></div>
+      </div>
+
+      <div class="row Upload Posts">
+        <div class="col-xs-4" style="margin:auto;"></div>
+        <div class="col-xs-4" style="margin:auto;">
+            <button type="submit" class="btn">
+              Create post
+            </button>
+        </div>
+        <div class="col-xs-4" style="margin:auto;"></div>
+      </div>
+
+  </div>
+
+    
+</div>

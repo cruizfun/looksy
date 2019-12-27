@@ -76,7 +76,20 @@
     <div class="row Edit Profile Alert">
       <div class="col-xs-4" style="margin:auto;"></div>
       <div class="col-xs-4" style="margin:auto;">
-      <%= alert %>
+        <% if @user.errors.any? %>
+          <% @user.errors.full_messages.each do |message| %>
+            <div class="alert" style="font-size: 20px; color: Tomato;">
+              <%= message %>
+            </div>
+          <% end %>
+        <% end %>
+        <% if @headshot.errors.any? %>
+          <% @headshot.errors.full_messages.each do |message| %>
+            <div class="alert" style="font-size: 12px; color: Tomato;">
+              Please select a profile picture
+            </div>
+          <% end %>
+        <% end %>
       </div>
       <div class="col-xs-4" style="margin:auto;"></div>
     </div>

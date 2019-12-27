@@ -14,14 +14,14 @@ class UserSessionsController < ApplicationController
       are_they_legit = user.authenticate(the_supplied_password)
     
       if are_they_legit == false
-        redirect_to("/sign_in2", { :alert => "Password is incorrect." })
+        redirect_to("/sign_in", { :alert => "Password is incorrect." })
       else
         session.store(:user_id, user.id)
       
         redirect_to("/", { :notice => "Signed in successfully." })
       end
     else
-      redirect_to("/sign_in2", { :alert => "There's no user account with that email address." })
+      redirect_to("/sign_in", { :alert => "There's no user account with that email address." })
     end
   end
 

@@ -9,10 +9,11 @@ class ImageUploader < CarrierWave::Uploader::Base
   process :convert => 'jpg'
   process :tags => ['post_picture']
   process :eager => true
-  process :resize_to_fill => [190, 300, :center]
+  process :resize_to_fill => [375, 812, :center]
+  process :quality => 85
 
   version :standard do
-    process :resize_to_fill => [190, 400, :fill]
+    process :resize_to_fill => [380, 400, :fill]
   end
 
   version :thumbnail do

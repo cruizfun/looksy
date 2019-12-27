@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def upload
-    render({ :template => "posts/upload_posts.html.erb" })
+    render({ :template => "posts/upload_posts2.html.erb" })
   end
 
   def create
