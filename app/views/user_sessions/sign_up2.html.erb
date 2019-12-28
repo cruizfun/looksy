@@ -2,50 +2,63 @@
 
 .row-Looksy-Header {
    height: 40px;
-   padding-bottom: 200px;
+   padding-bottom: 40%;
+   padding-top: 20%;
    font-family: 'Montserrat', sans-serif;
-   font-size: 14px;
+   text-align:center;
+   font-size:200%;
+   color:Tomato;
+}
+
+.Looksy-SubHeader {
+   font-family: 'Montserrat', sans-serif;
+   text-align:center;
+   font-size:50%;
+   color:Gray;
 }
 
 .btn {
-  background-color: Thistle; /* Blue background */
-  border: none; /* Remove borders */
-  color: white; /* White text */
-  font-size: 14px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
+  background-color: rgba(255, 99, 71, 0.6);
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   width: 160px;
 }
 
 .btn:hover {
-  background-color: Orchid;
+  background-color: Tomato;
+}
+
+.Sign-Up, .Sign-Up-Alert, .Sign-Up-Password, .Sign-Up-Password-Confirmation,
+  .Sign-Up-Email, .Sign-Up-Username, .Sign-Up-Button, .Alternative-Sign-In {
+  text-align:center;
 }
 
 </style>
 
 <div class="container">
-    <div class="row-Looksy-Header" align="center">
-      <a href="/feed" style="font-size:230%; text-decoration: none;"> 
-        <span style="color:Thistle;"> 
-          Looksy 
-        </span>
-      </a>
-      <p>
+
+    <div class="row-Looksy-Header">
+        Looksy
+      <p class="Looksy-SubHeader">
         Wear your best and help others wear their best too
       </p>
     </div>
     <div class="row Sign-Up">
-      <div class="col-xs-4" style="margin:auto;"></div>
-      <div class="col-xs-4" style="margin:auto;">
+      <div class="col-2"></div>
+      <div class="col-8">
         <span>
           Join the community
         </span>
       </div>
-      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-2"></div>
     </div>
-    <div class="row Sign-Up Alert">
-      <div class="col-xs-4" style="margin:auto;"></div>
-      <div class="col-xs-4" style="margin:auto;">
+
+    <div class="row Sign-Up-Alert">
+      <div class="col-2"></div>
+      <div class="col-8">
         <span style="font-size: 12px; color: Tomato;">
           <%= alert %>
         </span>
@@ -53,57 +66,66 @@
           <%= notice %>
         </span>
       </div>
-      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-2"></div>
     </div>
+
   <form action="/post_user" method="post" class="form-horizontal" enctype="multipart/form-data">
-    <div class="row Sign-Up Email">
-      <div class="col-xs-4" style="margin:auto;"></div>
-      <div class="col-xs-4" style="margin:auto;">
+    <div class="row Sign-Up-Email">
+      <div class="col-2"></div>
+      <div class="col-8">
         <input id="email_box" name="email_from_query" placeholder="Email" type="text" 
-        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+          style="font-size:80%; font-family: 'Montserrat', sans-serif;">
       </div>
-      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-2"></div>
     </div>
-    <div class="row Sign-Up Username">
-      <div class="col-xs-4" style="margin:auto;"></div>
-      <div class="col-xs-4" style="margin:auto;">
+
+    <div class="row Sign-Up-Username">
+      <div class="col-2"></div>
+      <div class="col-8">
         <input type="text" id="username_box" name="username_from_query" placeholder="Username" 
-        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+          style="font-size:80%; font-family: 'Montserrat', sans-serif;">
       </div>
-      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-2"></div>
     </div>
-    <div class="row Sign-Up Password">
-      <div class="col-xs-4" style="margin:auto;"></div>
-      <div class="col-xs-4" style="margin:auto;">
+
+    <div class="row Sign-Up-Password">
+      <div class="col-2"></div>
+      <div class="col-8">
         <input id="password_box" name="password_from_query" placeholder="Password" type="password" 
-        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+          style="font-size:80%; font-family: 'Montserrat', sans-serif">
       </div>
-      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-2"></div>
     </div>
-    <div class="row Sign-Up Password Confirmation">
-      <div class="col-xs-4" style="margin:auto;"></div>
-      <div class="col-xs-4" style="margin:auto;">
-        <input id="password_confirmation_box" name="password_confirmation_from_query" placeholder="Confirm Password" type="password"
-        style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+
+    <div class="row Sign-Up-Password-Confirmation">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <input id="password_confirmation_box" name="password_confirmation_from_query" placeholder="Confirm password" type="password"
+          style="font-size:80%; font-family: 'Montserrat', sans-serif;">
       </div>
-      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-2"></div>
     </div>
-    <div class="row Sign-Up Password Confirmation">
-      <div class="col-xs-4" style="margin:auto;"></div>
-      <div class="col-xs-4" style="margin:auto;">
+
+    <div class="row Sign-Up-Button">
+      <div class="col-2"></div>
+      <div class="col-8">
         <button class="btn" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
-          Sign up
+          Sign in
         </button>
       </div>
-      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-2"></div>
     </div>
-    <div class="row Alternative Sign-In">
-      <div class="col-xs-4" style="margin:auto;"></div>
-      <div class="col-xs-4" style="margin:auto;">
+
+    <div class="row" style="padding:5%;">
+    </div>
+
+    <div class="row Alternative-Sign-In">
+      <div class="col-2"></div>
+      <div class="col-8">
         <p>
           <a href="/sign_in" style="font-size:90%; font-family: 'Montserrat', sans-serif;"> Sign in </a> instead.
         </p>
       </div>
-      <div class="col-xs-4" style="margin:auto;"></div>
+      <div class="col-2"></div>
     </div>
 </div>

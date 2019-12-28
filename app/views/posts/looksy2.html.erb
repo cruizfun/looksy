@@ -102,6 +102,7 @@
     <% event_tag = post_event.tag %>
 
     <div class="row">
+
       <div class="col-8">
         <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
           <img src="<%= poster_avatar %>" class="avatar"> 
@@ -118,6 +119,10 @@
           <span class="text-bottom"> <%= event_tag %> </span>
         </div>
       </div>
+
+      <div class="row" style="padding-bottom:7%;">
+      </div>
+
       <div class="col-6">
         <div class="shadow bg-white rounded">
           <% if vote1_count > vote2_count %>
@@ -159,6 +164,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-6">
         <div class="shadow bg-white rounded">
           <% if vote2_count > vote1_count %>
@@ -168,15 +174,15 @@
           <% end %>
             <img src="<%= cloudinary_url(style2_image, :crop=>"fit")%>" class="card-img-top">
             <% if vote1 == nil && vote2 ==nil %>
-              <form action="/insert_vote" method="post">
-              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-              <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
-              <button class="button"> 
+              <%= form_with(model: @insert_vote) do |f| %>
+                <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+                <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
+                <button class="button"> 
                 <div class="arrow-left">
                   <p> <i class="far fa-heart"></i></p>
                 </div> 
-              </button>
-              </form>
+                </button>
+              <% end %>
             <% elsif vote2 == nil %>
               <div class="arrow-left">
                 <p> <i class="far fa-heart"></i></p>
@@ -200,6 +206,7 @@
           </div>   
         </div>
       </div>
+
     </div>
     
     <div class="row" style="height:20px;">

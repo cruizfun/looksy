@@ -138,7 +138,7 @@
 
   .btn-edit-profile {
     border-radius: 8px;
-    background-color: rgba(255, 99, 71, 0.4);
+    background-color: rgba(255, 99, 71, 0.6);
     padding-top: 5px;
     padding-bottom: 5px;
     width: 80px;
@@ -197,6 +197,7 @@
       <% event_tag = post_event.tag %>
 
     <div class="row">
+
       <div class="col-8">
         <span class="span-timestamp" style="font-size:80%"> <%= time_ago_in_words(post.created_at) %> ago </span>
       </div>
@@ -207,6 +208,10 @@
           <span class="text-bottom"> <%= event_tag %> </span>
         </div>
       </div>
+
+      <div class="row" style="padding-bottom:7%;">
+      </div>
+
       <div class="col-6">
         <div class="shadow bg-white rounded">
           <% if vote1_count > vote2_count %>
@@ -237,6 +242,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-6">
         <div class="shadow bg-white rounded">
           <% if vote2_count > vote1_count %>
@@ -267,6 +273,7 @@
           </div>   
         </div>
       </div>
+
     </div>
     
     <div class="row" style="height:20px;">

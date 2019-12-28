@@ -33,46 +33,15 @@
 
 <style>
 
-.flex-pagerunner {
-   display: inline-flex;
-   width: 400px;
-   height: 50px;
-   padding-left: 10px;
-   padding-right: 10px;
-   padding-top: 30px;
-   padding-bottom: 40px;
-   flex-wrap: nowrap;
-   flex-direction: row;
-   justify-content: space-between;
-   align-items: center;
-   font-family: 'Nunito', sans-serif;
-   font-weight: bold;
-   color: Tomato;
-}
-
-  .flex-nav-footer {
-    display: inline-flex;
-    width: 100%;
-    height: 50px;
-    padding-left: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: WhiteSmoke;
-    margin: auto;
-}
-
   .nav-button {
-  background-color: WhiteSmoke;
-  border: none; /* Remove borders */
-  color: #D3D3D3; /* Text Color */
-  text-align: center; !important;
-  cursor: pointer; /* Mouse pointer on hover */
-  height: 50px;
+    background-color: White;
+    border: none;
+    color: Tomato;
+    text-align: center; !important;
+    cursor: pointer; /* Mouse pointer on hover */
+    height: 50px;
+    font-size:25px;
 }
-
 
 </style>
 
@@ -96,20 +65,16 @@
           </div>
       </div>
   </div>
-      <nav class="navbar-xs navbar-light bg-white">
-      <div class="fixed-bottom">
-        <div class="flex-nav-footer">
+      <nav class="navbar navbar-light bg-white">
           <a class="nav-link" href="/feed"> <button class="nav-button"> 
-            <i class="fas fa-home" style="font-size:25px; color:Thistle;"></i> 
+            <i class="fas fa-home"></i> 
               </button> <span class="sr-only">(current)</span></a>
           <a class="nav-link" href="/new_post"> <button class="nav-button"> 
-            <i class="far fa-plus-square" style="font-size:25px; color:Thistle;"></i>
+            <i class="far fa-plus-square"></i>
               </button></a>
           <a class="nav-link" href="/feed/profile"> <button class="nav-button"> 
-            <i class="fas fa-female" style="font-size:25px; color:Thistle;"></i>
+            <i class="fas fa-female"></i>
               </button></a>
-        </div>
-        </div>
       </nav>
   <% end %>
 

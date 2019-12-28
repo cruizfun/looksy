@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def user_index
     @posts = Post.all.order({ :created_at => :desc })
     
-    render({ :template => "posts/own_feed3.html.erb" })
+    render({ :template => "posts/own_feed.html.erb" })
   end
 
   def visit_user
