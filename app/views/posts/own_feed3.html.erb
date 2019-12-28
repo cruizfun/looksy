@@ -166,9 +166,7 @@
 <hr>
 
   <div class="flex-user">
-    <a href="/feed/<%= poster_username %>">
-      <img src="<%= poster_avatar %>" class="avatar">
-    </a>
+    <img src="<%= poster_avatar %>" class="avatar">
     <span class="span-user" style="font-size:100%; color: rgba(255, 99, 71, 0.7);"> 
       <%= poster_username %> 
     </span>
@@ -219,12 +217,20 @@
             <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
             <div class="card-body">
               <% if vote1_count > vote2_count %>
-                <p class="card-text mx-0 px-0" style="text-align:center; font-family:'Pacifico'"> 
+                <p class="card-text" style="font-family:'Pacifico';"> 
                   Looksy: "This is the one!"
+                </p>
+                <p>
+                  <i class="far fa-heart"></i>
+                  <%= vote1_count %> votes
                 </p>
               <% else %>
                 <p class="card-text"> 
                   Looksy: "This is the one!"
+                </p>
+                <p style="color:Tomato;"> 
+                  <i class="far fa-heart"></i>
+                  <%= vote1_count %> votes
                 </p>
               <% end %>
             </div>
@@ -239,33 +245,22 @@
           <div class="card" style="background:White; color:White;">
           <% end %>
             <img src="<%= cloudinary_url(style2_image, :crop=>"fit")%>" class="card-img-top">
-            <% if vote1 == nil && vote2 ==nil %>
-              <form action="/insert_vote" method="post">
-              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-              <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
-              <button class="button"> 
-                <div class="arrow-left">
-                  <p> <i class="far fa-heart"></i></p>
-                </div> 
-              </button>
-              </form>
-            <% elsif vote2 == nil %>
-              <div class="arrow-left">
-                <p> <i class="far fa-heart"></i></p>
-              </div> 
-            <% elsif vote2 != nil %>
-              <div class="arrow-left">
-                <p> <i class="fas fa-heart"></i></p>
-              </div> 
-            <% end %>
             <div class="card-body">
               <% if vote2_count > vote1_count %>
-                <p class="card-text mx-0 px-0" style="text-align:center; font-family:'Pacifico';"> 
+                <p class="card-text" style="font-family:'Pacifico';"> 
                   Looksy: "This is the one!"
+                </p>
+                <p>
+                  <i class="far fa-heart"></i>
+                  <%= vote2_count %> votes
                 </p>
               <% else %>
                 <p class="card-text"> 
                   Looksy: "This is the one!"
+                </p>
+                <p style="color:Tomato;"> 
+                  <i class="far fa-heart"></i>
+                  <%= vote2_count %> votes
                 </p>
               <% end %>
             </div>
