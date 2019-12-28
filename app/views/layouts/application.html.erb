@@ -2,20 +2,6 @@
 <html>
   <head>
 
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-    <title> Looksy </title>
-
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
-    <!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/now-ui-kit.css?v=1.2.0" rel="stylesheet" />
-
     <title> Looksy </title>
     <%= csrf_meta_tags %>
 
@@ -38,7 +24,7 @@
     <%= csp_meta_tag %>
 
     <!-- Add Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Nunito&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Nunito|Pacifico&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
@@ -51,7 +37,8 @@
    display: inline-flex;
    width: 400px;
    height: 50px;
-   padding-left: 6px;
+   padding-left: 10px;
+   padding-right: 10px;
    padding-top: 30px;
    padding-bottom: 40px;
    flex-wrap: nowrap;
@@ -60,21 +47,21 @@
    align-items: center;
    font-family: 'Nunito', sans-serif;
    font-weight: bold;
-   color: Thistle;
+   color: Tomato;
 }
 
   .flex-nav-footer {
-   display: inline-flex;
-   width: 100%;
-   height: 50px;
-   padding-left: 0px;
-   padding-top: 0px;
-   padding-bottom: 0px;
-   flex-wrap: nowrap;
-   flex-direction: row;
-   justify-content: space-around;
-   background-color: WhiteSmoke;
-   margin: auto;
+    display: inline-flex;
+    width: 100%;
+    height: 50px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: WhiteSmoke;
+    margin: auto;
 }
 
   .nav-button {
@@ -92,6 +79,18 @@
   
   <% if @current_user == nil %>
   <% else %>
+  <div class="container">
+    <div class="row Running-Header">
+      <div class="flex-pagerunner">
+        <a href="/feed" style="font-size:200%; color:Tomato; text-decoration: none;"> 
+          Looksy
+        </a>
+        <a href="/sign_out" style="font-size:80%; font-weight:lighter; color:Gray; text-decoration: none;">
+          <span> Sign Out </span>
+        </a>
+      </div>
+    </div>
+  </div>
       <nav class="navbar-xs navbar-light bg-white">
       <div class="fixed-bottom">
         <div class="flex-nav-footer">

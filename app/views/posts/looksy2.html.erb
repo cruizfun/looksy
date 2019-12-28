@@ -13,24 +13,39 @@
     color: Thistle;
   }
 
-  .flex-postdetails {
-    display: inline-flex;
-    width: 100%;
-    padding-top: 5%;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'Nunito', sans-serif;
-    font-weight: bold;
-    color: Thistle;
+  .arrow-left {
+    position: absolute;
+    background-color: none;
+    left: 2%;
+    top: 0%;
+    z-index: 1;
+    color: Tomato;
+    border-radius: 50%;
+    font-size: 150%;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Pacifico', cursive;
+  }
+
+  .arrow-right {
+    position: absolute;
+    background-color: none;
+    left: 2%;
+    top: 0%;
+    z-index: 1;
+    color: Tomato;
+    border-radius: 50%;
+    font-size: 150%;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Pacifico', cursive;
   }
 
   .avatar {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: medium #D8BFD8 solid;
+    border: medium LightGray solid;
   }
 
   .event-tag {
@@ -55,24 +70,9 @@
     cursor: pointer; /* Mouse pointer on hover */
 }
 
-.img-raised{
-    box-shadow: $box-shadow-raised;
-}
-
 </style>
 
 <div class="container">
-
-  <div class="row Running-Header">
-    <div class="flex-pagerunner">
-      <a href="/feed" style="font-size:200%; text-decoration: none;"> 
-        <span style="color:Thistle;"> Looksy </span> 
-      </a>
-      <a href="/sign_out" style="font-size:80%; font-weight:lighter; color:Gray; text-decoration: none;">
-        <span> Sign Out </span>
-      </a>
-    </div>
-  </div>
 
   <hr>
   
@@ -102,86 +102,107 @@
     <% post_event = Event.where({ :id => post.event_id }).first %>
     <% event_tag = post_event.tag %>
 
-    <div class="row Post-Panel">
-      <div class="flex-postdetails">
-        <div class="col-xs-10">
-          <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
-            <img src="<%= poster_avatar %>" class="avatar"> 
-          </a>
-          <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
-            <span class="span-user" style="font-size:100%;"> <%= poster_username %> | </span> 
-          </a>
-          <span class="span-timestamp" style="font-size:80%"> <%= time_ago_in_words(post.created_at) %> ago </span>
+    <div class="row">
+      <div class="col-8">
+        <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
+          <img src="<%= poster_avatar %>" class="avatar"> 
+        </a>
+        <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
+          <span class="span-user" style="font-size:100%;"> <%= poster_username %> | </span> 
+        </a>
+        <span class="span-timestamp" style="font-size:80%"> <%= time_ago_in_words(post.created_at) %> ago </span>
+      </div>
+      <div class="col-4">
+        <div class="event-tag">
+          <%= event_tag %>
         </div>
-        <div class="col-xs-2">
-          <div class="event-tag">
-            <%= event_tag %>
+      </div>
+      <div class="col-6">
+        <div class="shadow bg-white rounded">
+          <% if vote1_count > vote2_count %>
+          <div class="card" style="background:Tomato; color:White;">
+          <% else %>
+          <div class="card" style="background:White; color:White;">
+          <% end %>
+            <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
+            <% if vote1 == nil && vote2 ==nil %>
+              <form action="/insert_vote" method="post">
+              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+              <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
+              <button class="button"> 
+                <div class="arrow-left">
+                  <p> <i class="far fa-heart"></i></p>
+                </div> 
+              </button>
+              </form>
+            <% elsif vote1 == nil %>
+              <div class="arrow-left">
+                <p> <i class="far fa-heart"></i></p>
+              </div> 
+            <% elsif vote1 != nil %>
+              <div class="arrow-left">
+                <p> <i class="fas fa-heart"></i></p>
+              </div> 
+            <% end %>
+            <div class="card-body">
+              <% if vote1_count > vote2_count %>
+                <p class="card-text" style="text-align:center; font-family:'Pacifico';"> 
+                  Looksy's Vote
+                </p>
+              <% else %>
+                <p class="card-text"> 
+                  Looksy's Vote
+                </p>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
       <div class="col-6">
-        <div class="card">
-          <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
+        <div class="shadow bg-white rounded">
+          <% if vote2_count > vote1_count %>
+          <div class="card" style="background:Tomato; color:White;">
+          <% else %>
+          <div class="card" style="background:White; color:White;">
+          <% end %>
+            <img src="<%= cloudinary_url(style2_image, :crop=>"fit")%>" class="card-img-top">
+            <% if vote1 == nil && vote2 ==nil %>
+              <form action="/insert_vote" method="post">
+              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+              <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
+              <button class="button"> 
+                <div class="arrow-left">
+                  <p> <i class="far fa-heart"></i></p>
+                </div> 
+              </button>
+              </form>
+            <% elsif vote2 == nil %>
+              <div class="arrow-left">
+                <p> <i class="far fa-heart"></i></p>
+              </div> 
+            <% elsif vote2 != nil %>
+              <div class="arrow-left">
+                <p> <i class="fas fa-heart"></i></p>
+              </div> 
+            <% end %>
             <div class="card-body">
-              <p class="card-text"> 
-                <% if vote1 == nil && vote2 ==nil %>
-                  <form action="/insert_vote" method="post">
-                  <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-                  <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
-                  <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8; font-size:25px;"> </i> </button>
-                  </form>
-                <% elsif vote1 == nil %>
-                  <i class="far fa-heart" style="color:#D8BFD8; font-size:25px;"> </i>
-                <% elsif vote1 != nil %>
-                  <i class="fas fa-heart" style="color:#D8BFD8; font-size:30px;"></i>
-                  <span span style="font-family:'Nunito', sans-serif; color:#D8BFD8; font-weight: bold; font-size: 14px;"> 
-                    Your vote 
-                  </span>
-                <% end %>
-              </p>
-              <p class="card-text">
-                <% if vote1_count > vote2_count %>
-                  <span style="font-family:'Nunito', sans-serif; color:Tomato; font-weight: bold; font-size: 14px;"> Looksy's Vote  </span>
-                <% else %>
-                <% end %>
-              </p>
+              <% if vote2_count > vote1_count %>
+                <p class="card-text" style="text-align:center; font-family:'Pacifico';"> 
+                  Looksy's Vote
+                </p>
+              <% else %>
+                <p class="card-text"> 
+                  Looksy's Vote
+                </p>
+              <% end %>
             </div>
+          </div>   
         </div>
       </div>
-      <div class="col-6">
-        <div class="card">
-          <img src="<%= cloudinary_url(style2_image, :crop=>"fit")%>" class="card-img-top">
-            <div class="card-body">
-              <p class="card-text"> 
-                <% if vote1 == nil && vote2 ==nil %>
-                  <form action="/insert_vote" method="post">
-                  <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-                  <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
-                  <button class="button"> <i class="fas fa-heart" style="color:#D8BFD8; font-size:25px;"> </i> </button>
-                  </form>
-                <% elsif vote2 == nil %>
-                  <i class="far fa-heart" style="color:#D8BFD8; font-size:25px;"> </i>
-                <% elsif vote2 != nil %>
-                  <i class="fas fa-heart" style="color:#D8BFD8; font-size:30px;"></i>
-                  <span span style="font-family:'Nunito', sans-serif; color:#D8BFD8; font-weight: bold; font-size: 14px;"> 
-                    Your vote 
-                  </span>
-                <% end %>
-              </p>
-              <p class="card-text">
-                <% if vote2_count > vote1_count %>
-                  <span style="font-family:'Nunito', sans-serif; color:Tomato; font-weight: bold; font-size: 14px;"> 
-                    Looksy's Vote  
-                  </span>
-                <% else %>
-                <% end %>
-              </p>
-            </div>
-        </div>
-      </div>
-      <div class="col-xs-6"></div>
-      <div class="col-xs-6"></div>
     </div>
-
+    
+    <div class="row" style="height:20px;">
+    </div>
   <%end%>
+
 </div>
