@@ -41,9 +41,69 @@
     font-family: 'Pacifico', cursive;
   }
 
+  .event-tag {
+    border-radius: 8px;
+    background: rgba(255, 99, 71, 0.2);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 80px;
+    height: 25px;
+    vertical-align: center;
+    text-align: center;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    color: Gray;
+    font-size: 12px;
+  }
+
+  .button {
+    background-color: White; /* Blue background */
+    border: none; /* Remove borders */
+    cursor: pointer; /* Mouse pointer on hover */
+}
+
+  .flex-pagerunner {
+    display: inline-flex;
+    width: 100%;
+    padding-bottom: 8%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: Thistle;
+  }
+
+  .flex-postdetails {
+    display: inline-flex;
+    width: 100%;
+    padding-top: 5%;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: Thistle;
+  }
+
+  .flex-user {
+    display: inline-flex;
+    width: 100%;
+    padding-top: 5%;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: Thistle;
+  }
+
   .avatar {
-    width: 30px;
-    height: 30px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     border: medium LightGray solid;
   }
@@ -69,46 +129,77 @@
     cursor: pointer; /* Mouse pointer on hover */
 }
 
+  .edit-button {
+    background-color: rgba(255, 99, 71, 0);
+    border: none; /* Remove borders */
+    cursor: pointer; /* Mouse pointer on hover */
+    color: White;
+  }
+
+  .btn-edit-profile {
+    border-radius: 8px;
+    background-color: rgba(255, 99, 71, 0.4);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 80px;
+    height: 25px;
+    vertical-align: center;
+    text-align: center;
+    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: White;
+    font-size: 10px;
+  }
+
 </style>
+
+<% poster_username = @current_user.username %>
+<% if @current_user.headshot_id == nil %>
+  <% poster_avatar = "/default-avatar.png" %>
+<% else %>
+  <% poster_avatar = Headshot.where({ :id => @current_user.headshot_id }).first.image %>
+<% end %>
 
 <div class="container">
 
-  <hr>
+<hr>
+
+  <div class="flex-user">
+    <a href="/feed/<%= poster_username %>">
+      <img src="<%= poster_avatar %>" class="avatar">
+    </a>
+    <span class="span-user" style="font-size:100%; color: rgba(255, 99, 71, 0.7);"> 
+      <%= poster_username %> 
+    </span>
+    <div class="btn-edit-profile">
+      <form action="/edit_user">
+        <button class="edit-button"> Edit Profile </button>
+      </form>
+    </div>        
+  </div>
+
+  <div class="row" style="padding:15px;">
+  </div>
   
-  <% @posts.each do |post| %>
-    
-    <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
-    <% vote2 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit2_id }).first %>
+  <% @posts.where({ :poster_id => @current_user.id }).each do |post| %>
+      <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
+      <% vote2 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit2_id }).first %>
 
-    <% vote1_count = Vote.where({ :bestoutfit_id => post.outfit1_id }).all.count %>
-    <% vote2_count = Vote.where({ :bestoutfit_id => post.outfit2_id }).all.count %>
+      <% vote1_count = Vote.where({ :bestoutfit_id => post.outfit1_id }).all.count %>
+      <% vote2_count = Vote.where({ :bestoutfit_id => post.outfit2_id }).all.count %>
 
-    <% style1 = Outfit.where({ :id => post.outfit1_id }).first %>
-    <% style1_image = style1.image %>
+      <% style1 = Outfit.where({ :id => post.outfit1_id }).first %>
+      <% style1_image = style1.image %>
 
-    <% style2 = Outfit.where({ :id => post.outfit2_id }).first %>
-    <% style2_image = style2.image %>
-          
-    <% poster = User.where({ :id => post.poster_id }).first %>
-    <% poster_username = poster.username %>
-    <% poster_username = @current_user.username %>
-    <% if poster.headshot_id == nil %>
-      <% poster_avatar = "/default-avatar.png" %>
-    <% else %>
-      <% poster_avatar = Headshot.where({ :id => poster.headshot_id }).first.image %>
-    <% end %>
+      <% style2 = Outfit.where({ :id => post.outfit2_id }).first %>
+      <% style2_image = style2.image %>   
 
-    <% post_event = Event.where({ :id => post.event_id }).first %>
-    <% event_tag = post_event.tag %>
+      <% post_event = Event.where({ :id => post.event_id }).first %>
+      <% event_tag = post_event.tag %>
 
     <div class="row">
       <div class="col-8">
-        <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
-          <img src="<%= poster_avatar %>" class="avatar"> 
-        </a>
-        <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
-          <span class="span-user" style="font-size:100%; color: rgba(255, 99, 71, 0.7);"> <%= poster_username %></span> 
-        </a>
         <span class="span-timestamp" style="font-size:80%"> <%= time_ago_in_words(post.created_at) %> ago </span>
       </div>
       <div class="col-1">
@@ -126,25 +217,6 @@
           <div class="card" style="background:White; color:White;">
           <% end %>
             <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
-            <% if vote1 == nil && vote2 ==nil %>
-              <form action="/insert_vote" method="post">
-              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-              <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
-              <button class="button"> 
-                <div class="arrow-left">
-                  <p> <i class="far fa-heart"></i></p>
-                </div> 
-              </button>
-              </form>
-            <% elsif vote1 == nil %>
-              <div class="arrow-left">
-                <p> <i class="far fa-heart"></i></p>
-              </div> 
-            <% elsif vote1 != nil %>
-              <div class="arrow-left">
-                <p> <i class="fas fa-heart"></i></p>
-              </div> 
-            <% end %>
             <div class="card-body">
               <% if vote1_count > vote2_count %>
                 <p class="card-text mx-0 px-0" style="text-align:center; font-family:'Pacifico'"> 

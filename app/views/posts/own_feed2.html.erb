@@ -43,7 +43,7 @@
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    border: medium #D8BFD8 solid;
+    border: medium LightGray solid;
   }
 
   .event-tag {
@@ -102,17 +102,6 @@
 
 <div class="container">
 
-  <div class="row Running-Header">
-    <div class="flex-pagerunner">
-      <a href="/feed" style="font-size:200%; text-decoration: none;"> 
-        <span style="color:Thistle;"> Looksy </span> 
-      </a>
-      <a href="/sign_out" style="font-size:80%; font-weight:lighter; color:Gray; text-decoration: none;">
-        <span> Sign Out </span>
-      </a>
-    </div>
-  </div>
-  
   <hr>
 
   <div class="row Post-Panel">
@@ -143,9 +132,7 @@
         <% style2_image = style2.image %>   
 
         <% post_event = Event.where({ :id => post.event_id }).first %>
-        <% event_tag = post_event.tag %>
-
-
+        <% event_tag = post_event.ta
       <div class="flex-postdetails">
         <div class="col-xs-10">
           <span class="span-timestamp" style="font-size:80%"> <%= time_ago_in_words(post.created_at) %> ago </span>
