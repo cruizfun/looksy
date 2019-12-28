@@ -34,7 +34,7 @@
 <style>
 
   .nav-button {
-    background-color: White;
+    background-color: rgba(255, 99, 71, 0);
     border: none;
     color: Tomato;
     text-align: center; !important;
@@ -47,9 +47,9 @@
 
 <body>
   
-  <% if @current_user == nil %>
-  <% else %>
-  <div class="container">
+  <% if @current_user != nil %>
+  
+    <div class="container">
       <div class="row Running-Header">
           <div class="col-7">
             <a href="/feed" style="font-size:200%; color:Tomato; text-decoration: none;"> 
@@ -64,21 +64,25 @@
             </a>
           </div>
       </div>
-  </div>
-      <nav class="navbar navbar-light bg-white">
-          <a class="nav-link" href="/feed"> <button class="nav-button"> 
-            <i class="fas fa-home"></i> 
-              </button> <span class="sr-only">(current)</span></a>
-          <a class="nav-link" href="/new_post"> <button class="nav-button"> 
-            <i class="far fa-plus-square"></i>
-              </button></a>
-          <a class="nav-link" href="/feed/profile"> <button class="nav-button"> 
-            <i class="fas fa-female"></i>
-              </button></a>
-      </nav>
+    </div>
+
+    <nav class="navbar fixed-bottom" style="height:60px; background-color:WhiteSmoke;">
+      <a class="nav-link" href="/feed"> <button class="nav-button"> 
+        <i class="fas fa-home"></i> 
+          </button> <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/new_post"> <button class="nav-button"> 
+        <i class="far fa-plus-square"></i>
+          </button></a>
+      <a class="nav-link" href="/feed/profile"> <button class="nav-button"> 
+        <i class="fas fa-female"></i>
+          </button></a>
+    </nav>
+  
+  <% else %>
   <% end %>
 
-    <%= yield %>
+  <%= yield %>
 
-  </body>
+</body>
+
 </html>

@@ -1,20 +1,5 @@
 <style>
 
-  .event-tag {
-    border-radius: 8px;
-    background: rgba(255, 99, 71, 0.2);
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 80px;
-    height: 25px;
-    vertical-align: center;
-    text-align: center;
-    margin: auto;
-    font-family: 'Montserrat', sans-serif;
-    color: Gray;
-    font-size: 12px;
-  }
-
   .button {
     background-color: White; /* Blue background */
     border: none; /* Remove borders */
@@ -84,13 +69,40 @@
     font-weight: bold;
   }
 
+    .arrow-left {
+    position: absolute;
+    background-color: none;
+    left: 2%;
+    top: 0%;
+    z-index: 1;
+    color: Tomato;
+    border-radius: 50%;
+    font-size: 150%;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Pacifico', cursive;
+  }
+
+  .arrow-right {
+    position: absolute;
+    background-color: none;
+    left: 2%;
+    top: 0%;
+    z-index: 1;
+    color: Tomato;
+    border-radius: 50%;
+    font-size: 150%;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Pacifico', cursive;
+  }
 </style>
 
-<% poster_username = @current_user.username %>
-<% if @current_user.headshot_id == nil %>
+<% poster_username = @selected_user.username %>
+<% if @selected_user.headshot_id == nil %>
   <% poster_avatar = "/default-avatar.png" %>
 <% else %>
-  <% poster_avatar = Headshot.where({ :id => @current_user.headshot_id }).first.image %>
+  <% poster_avatar = Headshot.where({ :id => @selected_user.headshot_id }).first.image %>
 <% end %>
 
 <div class="container">
@@ -101,18 +113,13 @@
     <img src="<%= poster_avatar %>" class="avatar">
     <span class="span-user" style="font-size:100%; color: rgba(255, 99, 71, 0.7);"> 
       <%= poster_username %> 
-    </span>
-    <div class="btn-edit-profile">
-      <form action="/edit_user">
-        <button class="edit-button"> Edit Profile </button>
-      </form>
-    </div>        
+    </span>     
   </div>
 
   <div class="row" style="padding:15px;">
   </div>
-  
-  <% @posts.where({ :poster_id => @current_user.id }).each do |post| %>
+
+  <% @userposts.each do |post| %>
       <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
       <% vote2 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit2_id }).first %>
 
@@ -152,22 +159,33 @@
           <div class="card" style="background:White; color:White;">
           <% end %>
             <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
+            <% if vote1 == nil && vote2 ==nil %>
+              <%= form_with(model: @insert_vote) do |f| %>
+                <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+                <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
+                <button class="button"> 
+                <div class="arrow-left">
+                  <p> <i class="far fa-heart"></i></p>
+                </div> 
+                </button>
+              <% end %>
+            <% elsif vote1 == nil %>
+              <div class="arrow-left">
+                <p> <i class="far fa-heart"></i></p>
+              </div> 
+            <% elsif vote1 != nil %>
+              <div class="arrow-left">
+                <p> <i class="fas fa-heart"></i></p>
+              </div> 
+            <% end %>
             <div class="card-body">
               <% if vote1_count > vote2_count %>
                 <p class="card-text" style="font-family:'Pacifico';"> 
                   Looksy: "This is the one!"
                 </p>
-                <p>
-                  <i class="far fa-heart"></i>
-                  <%= vote1_count %> votes
-                </p>
               <% else %>
                 <p class="card-text"> 
                   Looksy: "This is the one!"
-                </p>
-                <p style="color:Tomato;"> 
-                  <i class="far fa-heart"></i>
-                  <%= vote1_count %> votes
                 </p>
               <% end %>
             </div>
@@ -183,22 +201,33 @@
           <div class="card" style="background:White; color:White;">
           <% end %>
             <img src="<%= cloudinary_url(style2_image, :crop=>"fit")%>" class="card-img-top">
+              <% if vote1 == nil && vote2 ==nil %>
+                <%= form_with(model: @insert_vote) do |f| %>
+                  <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+                  <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
+                  <button class="button"> 
+                  <div class="arrow-left">
+                    <p> <i class="far fa-heart"></i></p>
+                  </div> 
+                  </button>
+                <% end %>
+              <% elsif vote2 == nil %>
+                <div class="arrow-left">
+                  <p> <i class="far fa-heart"></i></p>
+                </div> 
+              <% elsif vote2 != nil %>
+                <div class="arrow-left">
+                  <p> <i class="fas fa-heart"></i></p>
+                </div> 
+              <% end %>
             <div class="card-body">
               <% if vote2_count > vote1_count %>
                 <p class="card-text" style="font-family:'Pacifico';"> 
                   Looksy: "This is the one!"
                 </p>
-                <p>
-                  <i class="far fa-heart"></i>
-                  <%= vote2_count %> votes
-                </p>
               <% else %>
                 <p class="card-text"> 
                   Looksy: "This is the one!"
-                </p>
-                <p style="color:Tomato;"> 
-                  <i class="far fa-heart"></i>
-                  <%= vote2_count %> votes
                 </p>
               <% end %>
             </div>
@@ -211,18 +240,6 @@
     <div class="row" style="padding-bottom:3%;">
     </div>
 
-    <div class="row">
-      <div class="col-6">
-        <%= form_with(model: @delete_post) do |f| %>
-          <button class="button">
-            <i class="far fa-trash-alt" style="font-size:20px;"></i>
-          </button>
-        <% end %>
-      </div>
-      <div class="col-6">
-      </div>
-    </div>
-    
     <div class="row" style="height:20px;">
     </div>
   <%end%>

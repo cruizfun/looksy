@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   def community_index
     @posts = Post.all.order({ :created_at => :desc })
 
-    render({ :template => "posts/looksy2.html.erb" })
+    render({ :template => "posts/looksy.html.erb" })
   end
 
   def user_index
@@ -16,11 +16,11 @@ class PostsController < ApplicationController
     @selected_user = User.where({ :username => given_username }).first
     @userposts = Post.where({ :poster_id => @selected_user.id }).order({ :created_at => :desc })
     
-    render({ :template => "posts/visit_user.html.erb" })
+    render({ :template => "posts/visit_user2.html.erb" })
   end
 
   def upload
-    render({ :template => "posts/upload_posts2.html.erb" })
+    render({ :template => "posts/upload_posts.html.erb" })
   end
 
   def create

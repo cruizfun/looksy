@@ -74,6 +74,13 @@
 <div class="container">
 
   <hr>
+
+  <p style="font-size: 13px; font-family: 'Montserrat', sans-serif;">
+    Start loving looks to help Looksy friends wear their best
+  </p>
+  
+  <div class="row" style="padding-bottom:2%;">
+  </div>
   
   <% @posts.each do |post| %>
     
@@ -91,7 +98,6 @@
           
     <% poster = User.where({ :id => post.poster_id }).first %>
     <% poster_username = poster.username %>
-    <% poster_username = @current_user.username %>
     <% if poster.headshot_id == nil %>
       <% poster_avatar = "/default-avatar.png" %>
     <% else %>
@@ -132,15 +138,15 @@
           <% end %>
             <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
             <% if vote1 == nil && vote2 ==nil %>
-              <form action="/insert_vote" method="post">
-              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-              <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
-              <button class="button"> 
+              <%= form_with(model: @insert_vote) do |f| %>
+                <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+                <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
+                <button class="button"> 
                 <div class="arrow-left">
                   <p> <i class="far fa-heart"></i></p>
                 </div> 
-              </button>
-              </form>
+                </button>
+              <% end %>
             <% elsif vote1 == nil %>
               <div class="arrow-left">
                 <p> <i class="far fa-heart"></i></p>
@@ -211,6 +217,10 @@
     
     <div class="row" style="height:20px;">
     </div>
+
   <%end%>
+
+  <div class="row" style="height:100px;">
+    </div>
 
 </div>

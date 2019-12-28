@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action(:force_user_sign_in, { :only => [:new_registration_form, :create] })
   
   def new_registration_form
-    render({ :template => "user_sessions/sign_up2.html.erb" })
+    render({ :template => "user_sessions/sign_up.html.erb" })
   end
 
   def create
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   end
     
   def edit_registration_form
-    render({ :template => "users/edit_profile2.html.erb" })
+    render({ :template => "users/edit_profile.html.erb" })
   end
 
   def update
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
       @user.save
       redirect_to("/feed", { :notice => "User account updated successfully."})
     else
-      render({ :template => "users/edit_profile_with_errors2.html.erb" })
+      render({ :template => "users/edit_profile_with_errors.html.erb" })
     end
 
   end
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     user_posts.destroy
     reset_session
     
-    redirect_to("/", { :notice => "User account cancelled" })
+    redirect_to("/", { :notice => "User account deleted" })
   end
   
 end
