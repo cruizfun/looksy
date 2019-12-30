@@ -1,28 +1,17 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  # Routes for the Event resource:
-
-  # CREATE
-  match("/insert_event", { :controller => "events", :action => "create", :via => "post"})
-          
-  # READ
-  match("/events", { :controller => "events", :action => "index", :via => "get"})
-  
-  match("/events/:id_from_path", { :controller => "events", :action => "show", :via => "get"})
-  
-  # UPDATE
-  
-  match("/modify_event/:id_from_path", { :controller => "events", :action => "update", :via => "post"})
-  
-  # DELETE
-  match("/delete_event/:id_from_path", { :controller => "events", :action => "destroy", :via => "get"})
-
+ 
   #------------------------------
 
   # Homepage
 
   match("/", { :controller => "posts", :action => "community_index", :via => "get"})
+  
+  # About
+
+  match("/about_ext", { :controller => "application", :action => "about_ext", :via => "get"})
+  match("/about_int", { :controller => "application", :action => "about_int", :via => "get"})
 
   # Routes for the Headshot resource (no longer being used, maintained for future modification)
 
