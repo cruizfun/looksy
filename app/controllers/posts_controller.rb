@@ -41,18 +41,13 @@ class PostsController < ApplicationController
       @post.outfit1_id = @outfit1.id
       @post.outfit2_id = @outfit2.id
       @post.poster_id = @current_user.id
-      post_event_type = params.fetch("event_type_from_query", "none provided")
-        if post_event_type == "none provided"
-          redirect_to("/new_post", { :alert => "Please make sure to select an event type!" })
-        else
-          post_event_type = Event.where({ :tag => params.fetch("event_type_from_query") }).first
-          @post.event_id = post_event_type.id
-          @post.save
-          redirect_to("/feed", { :notice => "Post created successfully." })
-        end
+      @post.save
+      redirect_to("/feed", { :notice => "Post created successfully." })
+
     else
       redirect_to("/new_post", { :alert => "Please make sure to upload two outfits so the community can vote!" })
     end
+
   end
 
   def destroy

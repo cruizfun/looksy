@@ -14,5 +14,4 @@
 class Post < ApplicationRecord
   validates :outfit1_id, :presence => true
   validates :outfit2_id, :presence => true
-  validates :event_id, :presence => true
 end

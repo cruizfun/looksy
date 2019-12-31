@@ -48,21 +48,6 @@
     border: medium LightGray solid;
   }
 
-  .event-tag {
-    border-radius: 8px;
-    background: rgba(255, 99, 71, 0.2);
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 80px;
-    height: 25px;
-    vertical-align: center;
-    text-align: center;
-    margin: auto;
-    font-family: 'Montserrat', sans-serif;
-    color: Gray;
-    font-size: 12px;
-  }
-
   .button {
     background-color: White; /* Blue background */
     border: none; /* Remove borders */
@@ -104,9 +89,6 @@
       <% poster_avatar = Headshot.where({ :id => poster.headshot_id }).first.image %>
     <% end %>
 
-    <% post_event = Event.where({ :id => post.event_id }).first %>
-    <% event_tag = post_event.tag %>
-
     <div class="row">
 
       <div class="col-8">
@@ -121,9 +103,6 @@
       <div class="col-1">
       </div>
       <div class="col-3">
-        <div class="event-tag">
-          <span class="text-bottom"> <%= event_tag %> </span>
-        </div>
       </div>
 
       <div class="row" style="padding-bottom:7%;">
@@ -138,7 +117,8 @@
           <% end %>
             <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
             <% if vote1 == nil && vote2 ==nil %>
-              <%= form_with(model: @insert_vote) do |f| %>
+
+              <form action="/insert_vote" id="post_form" class="post-form" data-remote="true">
                 <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
                 <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">   
                 <button class="button"> 
@@ -146,7 +126,7 @@
                   <p> <i class="far fa-heart"></i></p>
                 </div> 
                 </button>
-              <% end %>
+              </form>
             <% elsif vote1 == nil %>
               <div class="arrow-left">
                 <p> <i class="far fa-heart"></i></p>
@@ -180,7 +160,7 @@
           <% end %>
             <img src="<%= cloudinary_url(style2_image, :crop=>"fit")%>" class="card-img-top">
             <% if vote1 == nil && vote2 ==nil %>
-              <%= form_with(model: @insert_vote) do |f| %>
+              <form action="/insert_vote" method="post" class="post-form" data-remote="true">
                 <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
                 <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit_id_from_query">   
                 <button class="button"> 
@@ -188,7 +168,7 @@
                   <p> <i class="far fa-heart"></i></p>
                 </div> 
                 </button>
-              <% end %>
+              </form>
             <% elsif vote2 == nil %>
               <div class="arrow-left">
                 <p> <i class="far fa-heart"></i></p>

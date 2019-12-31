@@ -13,21 +13,6 @@
     border: medium LightGray solid;
   }
 
-  .event-tag {
-    border-radius: 8px;
-    background: rgba(255, 99, 71, 0.2);
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 80px;
-    height: 25px;
-    vertical-align: center;
-    text-align: center;
-    margin: auto;
-    font-family: 'Montserrat', sans-serif;
-    color: Gray;
-    font-size: 12px;
-  }
-
   .button {
     background-color: rgba(255, 99, 71, 0);
     border: none;
@@ -132,9 +117,6 @@
       <% style2 = Outfit.where({ :id => post.outfit2_id }).first %>
       <% style2_image = style2.image %>   
 
-      <% post_event = Event.where({ :id => post.event_id }).first %>
-      <% event_tag = post_event.tag %>
-
     <div class="row">
 
       <div class="col-8">
@@ -143,9 +125,6 @@
       <div class="col-1">
       </div>
       <div class="col-3">
-        <div class="event-tag">
-          <span class="text-bottom"> <%= event_tag %> </span>
-        </div>
       </div>
 
     <div class="row" style="padding-bottom:7%;">
