@@ -1,15 +1,14 @@
-$(function(){
-  $("#my_form").on("submit", function(event){
+
+  $(function(){
+  $(".post-form").on('click', function(event){
     $.ajax({
       type: "POST",
       url: this.action,
       data: $(this).serialize(),
       success: function(response) {
-        //update the DOM
+        $('i').removeClass('far fa-heart').addClass('fas fa-heart');
       }
     });
     event.preventDefault();
   });
 })
-
-console.log('hello');

@@ -60,6 +60,8 @@ class PostsController < ApplicationController
     corr_outfit1.destroy
     corr_outfit2.destroy
 
-    redirect_to("/feed", { :notice => "Post deleted successfully."} )
+    @posts = Post.all.order({ :created_at => :desc })
+    
+    render({ :template => "posts/own_feed.html.erb" })
   end
 end

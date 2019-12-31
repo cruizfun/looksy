@@ -44,24 +44,6 @@
 
 </style>
 
-<script>
-  $(function(){
-  $(".post-form").on("submit", function(event){
-    console.log('testyyy');
-    $.ajax({
-      type: "POST",
-      url: this.action,
-      data: $(this).serialize(),
-      success: function(response) {
-        //update the DOM
-        console.log('test');
-      }
-    });
-    event.preventDefault();
-  });
-})
-</script>
-
 <body>
   
   <% if @current_user != nil %>
