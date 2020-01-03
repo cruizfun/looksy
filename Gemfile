@@ -20,7 +20,8 @@ gem 'bcrypt'
 # Add Uploader
 gem 'carrierwave', '~> 2.0'
 gem 'cloudinary'
-gem 'devise'
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
