@@ -1,1 +1,8 @@
-$('#heart_div_1').html('<i class="fas fa-heart"></i>')
+        var vote1 = '<%=@vote1%>';
+        var vote2 = '<%=@vote2%>';
+        if (vote1 != "") {
+          $('#heart_div_1').html('<i class="fas fa-heart"></i>')
+        }
+        if (vote2 != "") {
+        $('#heart_div_2').html('<i class="fas fa-heart"></i>');
+        }
