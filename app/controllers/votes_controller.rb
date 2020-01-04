@@ -6,11 +6,12 @@ class VotesController < ApplicationController
     @vote.bestoutfit_id = params.fetch("bestoutfit_id_from_query")
 
     if @vote.post_id == nil
-      respond_to :js
       redirect_to("/feed", { :notice => "Vote failed to create successfully." })
     else
       @vote.save
-      redirect_to({ :template => "/feed" })
-    end
+      respond_to do |format|  
+        format.js { render 'posts/feed_partial'}
+      end
+    end  
   end
 end

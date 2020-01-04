@@ -130,18 +130,18 @@
           <div class="card" style="background:White; color:White;">
           <% end %>
             
-          <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
+            <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
 
-<%= javascript_include_tag('vote_load.js') %>         
+
 
             <form action="/insert_vote" method="post" class="post-form" data-remote="true">
               <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
               <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit_id_from_query">     
               <button class="button"> 
-              <div class="arrow-left">
-                <span id="heart_div_1"> <i class="far fa-heart"></i></span>
-              </div> 
-              </button>
+                <div class="arrow-left">
+                  <span id="heart_div_1"> <i class="far fa-heart"></i></span>
+                </div> 
+                </button>
             </form>
 
             <div class="card-body">
