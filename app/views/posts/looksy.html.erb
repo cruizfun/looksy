@@ -36,7 +36,7 @@
 
   .button {
     position: absolute;
-    left: 2%;
+    left: 0%;
     top: 0%;
     background-color: rgba(255, 99, 71, 0); /* Blue background */
     border: none; /* Remove borders */
@@ -113,9 +113,7 @@
               <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
               <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit1_id_from_query"> 
                 <button class="button"> 
-                  <div class="arrow-left"> 
-                    <span id="heart_div_1> <i class="far fa-heart"></i> </span>
-                  </div>
+                  <i id="heart_div_1" class="far fa-heart"></i> 
                 </button>
             </form>
 
@@ -159,10 +157,8 @@
               <form action="/insert_vote" method="post" data-remote="true">
                 <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
                 <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit2_id_from_query">   
-                <button class="button"> 
-                  <div class="arrow-left">
-                    <span id="heart_div_2"> <i class="far fa-heart"></i></span>
-                  </div> 
+                <button class="button">
+                  <i id="heart_div_2" class="far fa-heart"></i> 
                 </button>
               </form>
 
