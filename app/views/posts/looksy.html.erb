@@ -61,8 +61,7 @@
 
   <% id1 = 0 %>
   <% btn1 = 0 %>
-  <% btn2 = 0 %>
-  
+ 
   <% @posts.each do |post| %>
 
     <% id1 = id1 + 1 %>
@@ -121,14 +120,14 @@
           
           <% if vote1 == nil && vote2 == nil %>
 
-            <form action="/insert_vote" method="post" data-remote="true">
+            <form id="<%= btn1 %>" action="/insert_vote" method="post" data-remote="true">
               <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
               <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit1_id_from_query"> 
               <input type="hidden" value="<%= id1 %>" name="card_id1">
               <input type="hidden" value="<%= btn1 %>" name="button_id1">
-                <button id="<%= btn1 %>" class="button"> 
+                <button class="button"> 
                   <div class="arrow-left">
-                  <span id="<%= id1 %>"> <i class="far fa-heart"></i> </span>
+                  <span> <i class="far fa-heart"></i> </span>
                   </div>
                 </button>
             </form>
@@ -174,13 +173,14 @@
 
           <% if vote1 == nil && vote2 == nil %>
 
-              <form action="/insert_vote" method="post" data-remote="true">
+              <form id="<%= btn2 %>" action="/insert_vote" method="post" data-remote="true">
                 <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
                 <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit2_id_from_query">
                 <input type="hidden" value="<%= id2 %>" name="card_id2">   
-                <button id="<%= btn2 %>" class="button">
+                <input type="hidden" value="<%= btn2 %>" name="button_id2">
+                <button class="button">
                   <div class="arrow-left">
-                  <span id="<%= id2 %>"> <i class="far fa-heart"></i> </span>
+                  <span> <i class="far fa-heart"></i> </span>
                   </div>
                 </button>
               </form>

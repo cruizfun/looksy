@@ -3,10 +3,12 @@
         var id1 = '<%=@id1%>';
         var id2 = '<%=@id2%>';
         var btn1 = '<%=@btn1%>';
+        var btn2 = '<%=@btn2%>';
         if (vote1 != "") {
-          $('#'+id1).html('<i class="fas fa-heart"></i>');
-          $('#' +btn1).html('');
+          $('#' +btn1).html('<div class="arrow-left"><span> <i class="fas fa-heart"></i> </span></div>');
+          $('#' +btn2).html('<div class="arrow-left"><span> <i class="far fa-heart"></i> </span></div>');
         }
         if (vote2 != "") {
-          $('#'+id2).html('<i class="fas fa-heart"></i>');
+          $('#' +btn2).html('<div class="arrow-left"><span> <i class="fas fa-heart"></i> </span></div>');
+          $('#' +btn1).html('<div class="arrow-left"><span> <i class="far fa-heart"></i> </span></div>');
         }
