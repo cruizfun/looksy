@@ -16,7 +16,7 @@ class PostsController < ApplicationController
     @selected_user = User.where({ :username => given_username }).first
     @userposts = Post.where({ :poster_id => @selected_user.id }).order({ :created_at => :desc })
     
-    render({ :template => "posts/visit_user2.html.erb" })
+    render({ :template => "posts/visit_user.html.erb" })
   end
 
   def upload
