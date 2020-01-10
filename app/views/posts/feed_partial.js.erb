@@ -1,8 +1,10 @@
         var vote1 = '<%=@vote1%>';
         var vote2 = '<%=@vote2%>';
+        var id1 = '<%=@id1%>';
+        var id2 = '<%=@id2%>';
         if (vote1 != "") {
-          $('#heart_div_1').html('<i class="fas fa-heart"></i>')
+          $('#'+id1).html('<i class="fas fa-heart"></i>')
         }
         if (vote2 != "") {
-          $('#heart_div_2').html('<i class="fas fa-heart"></i>');
+          $('#'+id2).html('<i class="fas fa-heart"></i>');
         }

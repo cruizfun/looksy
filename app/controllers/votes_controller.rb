@@ -9,6 +9,7 @@ class VotesController < ApplicationController
       @vote.bestoutfit_id = params.fetch("bestoutfit1_id_from_query")
       @vote.save
       @vote1 = 1
+      @id1 = params.fetch("card_id1")
       respond_to do |format|  
       format.js { render 'posts/feed_partial'}
       end
@@ -16,6 +17,7 @@ class VotesController < ApplicationController
       @vote.bestoutfit_id = params.fetch("bestoutfit2_id_from_query")
       @vote.save
       @vote2 = 1
+      @id2 = params.fetch("card_id2")
       respond_to do |format|  
       format.js { render 'posts/feed_partial'}
       end
