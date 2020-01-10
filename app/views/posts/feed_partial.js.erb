@@ -1,10 +1,10 @@
         var vote1 = '<%=@vote1%>';
         var vote2 = '<%=@vote2%>';
-        var id1 = '<%=@id1%>';
-        var id2 = '<%=@id2%>';
         var btn1 = '<%=@btn1%>';
         var btn2 = '<%=@btn2%>';
         if (vote1 != "") {
+          console.log(btn1);
+          console.log(btn2);
           $('#' +btn1).html('<div class="arrow-left"><span> <i class="fas fa-heart"></i> </span></div>');
           $('#' +btn2).html('<div class="arrow-left"><span> <i class="far fa-heart"></i> </span></div>');
         }
