@@ -10,6 +10,7 @@ class VotesController < ApplicationController
       @vote.save
       @vote1 = 1
       @id1 = params.fetch("card_id1")
+      @btn1 = params.fetch("button_id1")
       respond_to do |format|  
       format.js { render 'posts/feed_partial'}
       end

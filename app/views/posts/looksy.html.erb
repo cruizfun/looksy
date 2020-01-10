@@ -60,11 +60,15 @@
   </div>
 
   <% id1 = 0 %>
+  <% btn1 = 0 %>
+  <% btn2 = 0 %>
   
   <% @posts.each do |post| %>
 
     <% id1 = id1 + 1 %>
     <% id2 = id1 + 1 %>
+    <% btn1 = btn1 + 1 %>
+    <% btn2 = btn1 + 1 %>
 
     <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
     <% vote2 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit2_id }).first %>
@@ -121,7 +125,8 @@
               <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
               <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit1_id_from_query"> 
               <input type="hidden" value="<%= id1 %>" name="card_id1">
-                <button class="button"> 
+              <input type="hidden" value="<%= btn1 %>" name="button_id1">
+                <button id="<%= btn1 %>" class="button"> 
                   <div class="arrow-left">
                   <span id="<%= id1 %>"> <i class="far fa-heart"></i> </span>
                   </div>
@@ -129,6 +134,7 @@
             </form>
 
             <% id1 = id2 %>
+            <% btn1 = btn2 %>
             <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
 
             <% elsif vote1 == nil %>
@@ -172,7 +178,7 @@
                 <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
                 <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit2_id_from_query">
                 <input type="hidden" value="<%= id2 %>" name="card_id2">   
-                <button class="button">
+                <button id="<%= btn2 %>" class="button">
                   <div class="arrow-left">
                   <span id="<%= id2 %>"> <i class="far fa-heart"></i> </span>
                   </div>
