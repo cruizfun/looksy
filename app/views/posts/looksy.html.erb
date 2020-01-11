@@ -115,6 +115,8 @@
             
             <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
             
+          <% if vote1 == nil && vote2 == nil %>
+          
             <form id="<%= btn1 %>" action="/insert_vote" method="post" data-remote="true">
               <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
               <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit1_id_from_query"> 
@@ -129,7 +131,7 @@
             
             <% vote1 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit1_id }).first %>
 
-            <% if vote1 == nil %>
+            <% elsif vote1 == nil %>
               <div class="arrow-left">
               <p> <i class="far fa-heart"></i> </p>
               </div> 
@@ -164,22 +166,24 @@
 
             <img src="<%= cloudinary_url(style2_image, :crop=>"fit")%>" class="card-img-top">
 
-              <form id="<%= btn2 %>" action="/insert_vote" method="post" data-remote="true">
-                <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
-                <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit2_id_from_query"> 
-                <input type="hidden" value="<%= btn1 %>" name="button_id1">
-                <input type="hidden" value="<%= btn2 %>" name="button_id2">
-                <button class="button">
-                  <div class="arrow-left">
-                  <span> <i class="far fa-heart"></i> </span>
-                  </div>
-                </button>
-              </form>
+            <% if vote1 == nil && vote2 == nil %>
+
+            <form id="<%= btn2 %>" action="/insert_vote" method="post" data-remote="true">
+              <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
+              <input type="hidden" value="<%= post.outfit2_id %>" name="bestoutfit2_id_from_query"> 
+              <input type="hidden" value="<%= btn1 %>" name="button_id1">
+              <input type="hidden" value="<%= btn2 %>" name="button_id2">
+              <button class="button">
+                <div class="arrow-left">
+                <span> <i class="far fa-heart"></i> </span>
+                </div>
+              </button>
+            </form>
 
               <% btn1 = btn2 %>
               <% vote2 = Vote.where({ :voter_id => @current_user.id, :bestoutfit_id => post.outfit2_id }).first %>
 
-            <% if vote2 == nil %>
+            <% elsif vote2 == nil %>
               <div class="arrow-left">
               <p> <i class="far fa-heart"></i></p>
               </div> 
