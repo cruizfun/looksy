@@ -1,7 +1,7 @@
 {
  "name": "Looksy",
  "start_url": "/feed",
- "display": "standalone";
+ "display": "standalone",
  "background_color": "WhiteSmoke",
  "theme_color": "Tomato",
  "icons": [
