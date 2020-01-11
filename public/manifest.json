@@ -1,5 +1,9 @@
 {
- "name": "App",
+ "name": "Looksy",
+ "start_url": "/feed",
+ "display": "standalone";
+ "background_color": "WhiteSmoke",
+ "theme_color": "Tomato",
  "icons": [
   {
    "src": "\/android-icon-36x36.png",
