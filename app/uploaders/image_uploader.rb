@@ -6,12 +6,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   include Cloudinary::CarrierWave
 
-  process :convert => 'png'
-  process :tags => ['outfits_image']
+  process :convert => 'jpg'
+  process :tags => ['post_picture']
+  process :eager => true
+  process :resize_to_fill => [300, 650, :center]
+  process :quality => 85
 
   version :standard do
-    process :eager => true
-    process :resize_to_fill => [100, 150, :north]
+    process :resize_to_fill => [300, 650, :fill]
   end
 
   version :thumbnail do
@@ -19,7 +21,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def public_id
-    return model.image
+    return model.id
   end 
 
   # Override the directory where uploaded files will be stored.
@@ -27,6 +29,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+
+  cache_storage :file
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)

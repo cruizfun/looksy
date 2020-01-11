@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+ 
+  #------------------------------
+
   # Homepage
 
   match("/", { :controller => "posts", :action => "community_index", :via => "get"})
+  
+  # About
+
+  match("/about_ext", { :controller => "application", :action => "about_ext", :via => "get"})
+  match("/about_int", { :controller => "application", :action => "about_int", :via => "get"})
 
   # Routes for the Headshot resource (no longer being used, maintained for future modification)
 
@@ -34,7 +43,6 @@ Rails.application.routes.draw do
 
   # CREATE
   match("/insert_outfit", { :controller => "outfits", :action => "create", :via => "post"})
-  match("/insert_outfit_test", { :controller => "outfits", :action => "create_test", :via => "post"})
   
   #------------------------------
 
@@ -46,10 +54,11 @@ Rails.application.routes.draw do
           
   # READ
   match("/feed", { :controller => "posts", :action => "community_index", :via => "get"})
-  match("/feed/:user_username", { :controller => "posts", :action => "user_index", :via => "get"})
+  match("/feed/profile", { :controller => "posts", :action => "user_index", :via => "get"})
+  match("/feed/:user_username", { :controller => "posts", :action => "visit_user", :via => "get"})
   
   # DELETE
-  match("/delete_post/:id_from_path", { :controller => "posts", :action => "destroy", :via => "get"})
+  match("/delete_post", { :controller => "posts", :action => "destroy", :via => "get"})
 
   #------------------------------
 
@@ -58,8 +67,8 @@ Rails.application.routes.draw do
   match("/sign_up", { :controller => "users", :action => "new_registration_form", :via => "get"})
   
   # Routes for signing in
-  match("/sign_in", { :controller => "user_sessions", :action => "new_session_form", :via => "get"})
   
+  match("/sign_in", { :controller => "user_sessions", :action => "new_session_form", :via => "get"})
   match("/user_verify_credentials", { :controller => "user_sessions", :action => "add_cookie", :via => "post"})
   
   # Route for signing out
@@ -72,8 +81,8 @@ Rails.application.routes.draw do
   
   # Route for editing account
   
-  match("/update_profile", { :controller => "users", :action => "update", :via => "post"})
   match("/edit_user", { :controller => "users", :action => "edit_registration_form", :via => "get"})
+  match("/update_profile", { :controller => "users", :action => "update", :via => "post"})
   
   # Route for removing an account
   

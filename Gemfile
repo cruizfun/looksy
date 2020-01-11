@@ -20,6 +20,8 @@ gem 'bcrypt'
 # Add Uploader
 gem 'carrierwave', '~> 2.0'
 gem 'cloudinary'
+gem 'jquery-rails'
+gem 'jquery-turbolinks'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -50,7 +52,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'grade_runner', github: 'firstdraft/grade_runner'
   gem 'pry-rails'
-  gem 'sqlite3', '~> 1.4'
+  gem 'sqlite3', :group => :development
   gem 'table_print'
   gem 'web_git', github: 'firstdraft/web_git'
 end
@@ -73,7 +75,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', "~> 0.18"
   gem 'rails_12factor'
 end
 

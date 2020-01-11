@@ -1,52 +1,132 @@
+<style>
+
+.row-Looksy-Header {
+   height: 40px;
+   padding-bottom: 40%;
+   padding-top: 20%;
+   font-family: 'Montserrat', sans-serif;
+   text-align:center;
+   font-size:200%;
+   color:Tomato;
+}
+
+.Looksy-SubHeader {
+   font-family: 'Montserrat', sans-serif;
+   text-align:center;
+   font-size:40%;
+   color:Gray;
+}
+
+.About-Subheader {
+  font-family: 'Montserrat', sans-serif;
+   text-align:center;
+   font-size:70%;
+   color:Gray;
+}
+
+.btn {
+  background-color: rgba(255, 99, 71, 0.6);
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  width: 160px;
+}
+
+.btn:hover {
+  background-color: Tomato;
+}
+
+.About, .Sign-In, .Sign-In-Alert, .Sign-In-Password, .Sign-In-Email, .Sign-In-Button, .Alternative-Sign-Up {
+  text-align:center;
+}
+
+</style>
+
 <div class="container">
-    <div class="row Header">
-        <div class="col-sm-12" align="center">
-        <h1>
-        Welcome to Rosey!
-        <h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4"> Please Sign In </div>
-        <div class="col-lg-4"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12"></div>
+
+    <div class="row-Looksy-Header">
+        Looksy
+      <p class="Looksy-SubHeader">
+        Wear your best and help others wear their best too
+      </p>
+      </div>
     </div>
 
-  <form action="/user_verify_credentials" method="post">
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4"> <label for="email_box">Email</label>
-          <input id="email_box" name="email_from_query" placeholder="Enter your email..." type="text">
-        </div>
-        <div class="col-lg-4"></div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4"><label for="password_box">Password</label>
-          <input id="password_box" name="password_from_query" placeholder="Enter your password..." type="password">
-        </div>
-        <div class="col-lg-4"></div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
-          <button>
+    <div class="row Sign-In">
+      <div class="col-2">
+      </div>
+      <div class="col-8">
+        <span>
           Sign in
-          </button>
-        </div>
-        <div class="col-lg-4"></div>
+        </span>
+      </div>
+      <div class="col-2"></div>
     </div>
-  </form>
+
+    <div class="row Sign-In-Alert">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <span style="font-size: 12px; color: Tomato;">
+          <%= alert %>
+        </span>
+        <span style="font-size: 12px; color: MediumSeaGreen;">
+          <%= notice %>
+        </span>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+  <form action="/user_verify_credentials" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="row Sign-In-Email">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <input id="email_box" name="email_from_query" placeholder="Email" type="text" 
+          style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row Sign-In-Password">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <input id="password_box" name="password_from_query" placeholder="Password" type="password" 
+          style="font-size:80%; font-family: 'Montserrat', sans-serif">
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row Sign-In-Button">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <button class="btn" style="font-size:80%; font-family: 'Montserrat', sans-serif;">
+          Sign in
+        </button>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row" style="padding:5%;">
+    </div>
+
+    <div class="row Alternative-Sign-Up">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <p>
+          <a href="/sign_up" style="font-size:90%; font-family: 'Montserrat', sans-serif;"> Sign Up </a> instead.
+        </p>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row About">
+    <div class="col-5"></div>
+    <div class="col-2"</div>
+      <a href="/about_ext" class="About-Subheader">
+        About
+      </a>
+    <div class="col-5"></div>
+    </div>
+
 </div>
-
-<hr>
-
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4" align="center"> Or, <a href="/sign_up">Sign up</a> instead. </div>
-        <div class="col-lg-4"></div>
-    </div>
-

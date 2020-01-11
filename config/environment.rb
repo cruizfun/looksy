@@ -8,4 +8,3 @@ require "carrierwave/orm/activerecord"
 require 'cloudinary'
 require "cloudinary/helper"
 
-

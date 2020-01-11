@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinalProject</title>
+
+    <title> Looksy </title>
     <%= csrf_meta_tags %>
 
     <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
@@ -10,7 +11,6 @@
     <!-- Connect Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <script src="https://kit.fontawesome.com/e8d4476375.js" crossorigin="anonymous"></script>
-
 
     <!-- Connect Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/minty/bootstrap.min.css">
@@ -23,69 +23,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csp_meta_tag %>
 
+    <!-- Add Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Nunito|Pacifico&display=swap" rel="stylesheet">
+
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
 
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+    </head>
 
-  <body>
-    <nav>
-    <% if @current_user == nil %>
-            <div>
-              <a href="/sign_up">
-                <i class="fas fa-users"></i>
-                Sign up
-              </a>
-            </div>
+<style>
 
-            <div>
-              <a href="/sign_in">
-                <i class="fas fa-users"></i>
-                Sign in
-              </a>
-            </div>
-      
-          <% else %>
+  .nav-button {
+    background-color: rgba(255, 99, 71, 0);
+    border: none;
+    color: Tomato;
+    text-align: center; !important;
+    cursor: pointer; /* Mouse pointer on hover */
+    height: 50px;
+    font-size:25px;
+}
 
-          <div>
-            <a href="/edit_user">
-              <i class="fas fa-users"></i>
-              Edit Your Profile
+</style>
+
+<body>
+  
+  <% if @current_user != nil %>
+  
+    <div class="container">
+      <div class="row Running-Header">
+          <div class="col-7">
+            <a href="/feed" style="font-size:200%; color:Tomato; text-decoration: none;"> 
+              Looksy
             </a>
           </div>
-
-          <div>
-            <a href="/feed/<%=@current_user.username%>">
-              <i class="fas fa-users"></i>
-              Go to your feed
+          <div class="col-2 pt-3">
+            <a href="/about_int" style="font-size:80%; ; color:Gray; text-decoration: none;">
+              About
             </a>
           </div>
-
-          <div>
-            <a href="/feed">
-              <i class="fas fa-users"></i>
-              Rosey Style Feed
+          <div class="col-3 pt-3">
+            <a href="/sign_out" style="font-size:80%; color:Gray; text-decoration: none;">
+              Sign Out
             </a>
           </div>
+      </div>
+    </div>
 
-          <div>
-            <a href="/sign_out">
-              <i class="fas fa-users"></i>
-              Sign out
-            </a>
-          </div>
-        
-      <% end %> 
-
+    <nav class="navbar fixed-bottom" style="height:60px; background-color:WhiteSmoke;">
+      <a class="nav-link" href="/feed"> <button class="nav-button"> 
+        <i class="fas fa-home"></i> 
+          </button> <span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/new_post"> <button class="nav-button"> 
+        <i class="far fa-plus-square"></i>
+          </button></a>
+      <a class="nav-link" href="/feed/profile"> <button class="nav-button"> 
+        <i class="fas fa-female"></i>
+          </button></a>
     </nav>
+  
+  <% else %>
+  <% end %>
 
-  <div class="alert" style="font-size: 20px; color: Tomato;">
-  <%= alert %>
-  </div>
+  <%= yield %>
 
-  <div class="notice" style="font-size: 20px; color: MediumSeaGreen;">
-  <%= notice %>
-  </div>
 
-    <%= yield %>
-  </body>
+</body>
+
 </html>
