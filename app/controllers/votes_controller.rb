@@ -9,17 +9,15 @@ class VotesController < ApplicationController
       @vote.bestoutfit_id = params.fetch("bestoutfit1_id_from_query")
       @vote.save
       @vote1 = 1
-      @id1 = params.fetch("card_id1")
       @btn1 = params.fetch("button_id1")
       @btn2 = params.fetch("button_id2")
       respond_to do |format|  
       format.js { render 'posts/feed_partial'}
       end
-    elsif params.fetch("bestoutfit2_id_from_query", "nonee") != "none"
+    elsif params.fetch("bestoutfit2_id_from_query", "none") != "none"
       @vote.bestoutfit_id = params.fetch("bestoutfit2_id_from_query")
       @vote.save
       @vote2 = 1
-      @id2 = params.fetch("card_id2")
       @btn1 = params.fetch("button_id1")
       @btn2 = params.fetch("button_id2")
       respond_to do |format|  

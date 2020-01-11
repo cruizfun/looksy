@@ -258,7 +258,7 @@ GEM
       octicons (= 9.3.0)
       rails
     orm_adapter (0.5.0)
-    pg (1.1.4)
+    pg (0.21.0)
     polyamorous (2.3.0)
       activerecord (>= 5.0)
     pry (0.12.2)
@@ -455,7 +455,7 @@ DEPENDENCIES
   letter_opener
   listen (>= 3.0.5, < 3.2)
   meta_request
-  pg
+  pg (~> 0.18)
   pry-rails
   puma (~> 3.11)
   rails (~> 6.0.0)
@@ -465,7 +465,7 @@ DEPENDENCIES
   sass-rails (~> 5)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
+  sqlite3
   table_print
   tzinfo-data
   web-console (>= 3.3.0)

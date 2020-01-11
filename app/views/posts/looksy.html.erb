@@ -114,7 +114,7 @@
           <% end %>
             
             <img src="<%= cloudinary_url(style1_image, :crop=>"fit")%>" class="card-img-top">
-
+            
             <form id="<%= btn1 %>" action="/insert_vote" method="post" data-remote="true">
               <input type="hidden" value="<%= post.id %>" name="post_id_from_query">
               <input type="hidden" value="<%= post.outfit1_id %>" name="bestoutfit1_id_from_query"> 
