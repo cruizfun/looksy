@@ -27,13 +27,6 @@
     font-family: 'Pacifico', cursive;
   }
 
-  .avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: medium LightGray solid;
-  }
-
   .button {
     position: absolute;
     left: 0%;
@@ -88,18 +81,15 @@
 
     <div class="row">
 
-      <div class="col-8">
+      <div class="col-12">
         <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
-          <img src="<%= poster_avatar %>" class="avatar"> 
+          <img src="<%= cloudinary_url(poster_avatar, :crop=>"fill", :radius=>"max", 
+            :height=>30, :width=>30, :gravity=>"center", :border=>"3px_solid_rgb:D3D3D3") %>">
         </a>
         <a href="/feed/<%= poster_username %>" style="text-decoration:none;">
           <span class="span-user" style="font-size:100%; color: rgba(255, 99, 71, 0.7);"> <%= poster_username %></span> 
         </a>
         <span class="span-timestamp" style="font-size:80%"> <%= time_ago_in_words(post.created_at) %> ago </span>
-      </div>
-      <div class="col-1">
-      </div>
-      <div class="col-3">
       </div>
 
       <div class="row" style="padding-bottom:7%;">

@@ -6,13 +6,6 @@
     cursor: pointer; /* Mouse pointer on hover */
 }
 
-  .avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    border: medium LightGray solid;
-  }
-
   .button {
     background-color: rgba(255, 99, 71, 0);
     border: none;
@@ -68,7 +61,8 @@
 <hr>
 
   <div class="flex-user">
-    <img src="<%= poster_avatar %>" class="avatar">
+    <img src="<%= cloudinary_url(poster_avatar, :crop=>"fill", :radius=>"max", 
+      :height=>70, :width=>70, :gravity=>"center", :border=>"3px_solid_rgb:D3D3D3") %>">
     <span class="span-user" style="font-size:100%; color: rgba(255, 99, 71, 0.7);"> 
       <%= poster_username %> 
     </span>
