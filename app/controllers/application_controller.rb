@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
     render({ :template => "about/about_int.html.erb" })
   end
 
+  def give_feedback
+    render({ :template => "about/feedback.html.erb" })
+  end
+
 end

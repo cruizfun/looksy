@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   match("/about_ext", { :controller => "application", :action => "about_ext", :via => "get"})
   match("/about_int", { :controller => "application", :action => "about_int", :via => "get"})
 
+  # Feedback
+
+  match("/feedback", { :controller => "application", :action=> "give_feedback", :via => "get"})
+
   # Routes for the Headshot resource (no longer being used, maintained for future modification)
 
   # CREATE
