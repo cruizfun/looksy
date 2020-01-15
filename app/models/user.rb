@@ -43,11 +43,11 @@
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable, :confirmable, :lockable
+  #devise :database_authenticatable, :registerable,
+         #:recoverable, :rememberable, :validatable, :trackable, :confirmable, :lockable
   validates :email, :uniqueness => { :case_sensitive => true }
   validates :email, :presence => true
-  #validates :username, :presence => true, :uniqueness => true
-  #validates_format_of :username, with: /^[a-zA-Z0-9_]*$/, :multiline => true
-  #has_secure_password
+  validates :username, :presence => true, :uniqueness => true
+  validates_format_of :username, with: /^[a-zA-Z0-9_]*$/, :multiline => true
+  has_secure_password
 end
