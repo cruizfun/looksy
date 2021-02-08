@@ -18,7 +18,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt'
 # Add Uploader
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'cloudinary'
 gem 'jquery-rails'
 gem 'jquery-turbolinks'
